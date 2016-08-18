@@ -29,7 +29,7 @@ angular.module('adf', ['adf.provider', 'adf.locale', 'ui.bootstrap'])
   .value('adfTemplatePath', '../src/templates/')
   .value('rowTemplate', '<adf-dashboard-row row="row" adf-model="adfModel" options="options" edit-mode="editMode" ng-repeat="row in column.rows" />')
   .value('columnTemplate', '<adf-dashboard-column column="column" adf-model="adfModel" options="options" edit-mode="editMode" ng-repeat="column in row.columns" />')
-  .value('adfVersion', '0.12.0');
+  .value('adfVersion', '0.13.0-SNAPSHOT');
 
 /*
  * The MIT License
@@ -507,17 +507,17 @@ angular.module('adf')
      */
     function createCategories(widgets){
       var categories = {};
-      angular.forEach(widgets, function(widget){
+      angular.forEach(widgets, function(widget, key){
         var category = widget.category;
         // if the widget has no category use a default one
         if (!category){
           category = 'Miscellaneous';
         }
         // push widget to category array
-        if (!categories[category]){
-          categories[category] = [];
+        if (angular.isUndefined(categories[category])){
+          categories[category] = {widgets: {}};
         }
-        categories[category].push(widget);
+        categories[category].widgets[key] = widget;
       });
       return categories;
     }

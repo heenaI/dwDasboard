@@ -1,0 +1,12 @@
+<label>Select Date</label>
+<input class="form-control"
+       ng-model="config.sample"
+       ng-model-options="{ updateOn: 'blur' }"
+       placeholder="Select a date..."
+       moment-picker="config.sample"
+       id='date'>
+
+<label for="format">Format</label>
+                 <select class="form-control inline" id="format" ng-model="config.sampleTwo"
+                  ng-options='obj.format as obj.desc for obj in formats' ng-change="selected()">
+                </select>

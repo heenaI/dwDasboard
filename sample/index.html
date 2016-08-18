@@ -40,6 +40,8 @@
     <link href="../dist/angular-dashboard-framework.css" rel="stylesheet">
     <link href="widgets/clock/src/style.css" rel="stylesheet">
     <link href="widgets/travis/dist/adf-widget-travis.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="widgets/text/src/quill.snow.css">
+    <link rel="stylesheet" type="text/css" href="widgets/text/src/quill.base.css">
     <!-- endbuild -->
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -76,40 +78,7 @@
 
   <body ng-app="sample">
 
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container" ng-controller="navigationCtrl">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" ng-click="toggleNav()">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#/sample-01">ADF</a>
-        </div>
-        <div uib-collapse="navCollapsed" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li ng-class="navClass('sample/01')">
-              <a href="#/sample/01">Sample 01</a>
-            </li>
-            <li ng-class="navClass('sample/02')">
-              <a href="#/sample/02">Sample 02</a>
-            </li>
-            <li ng-class="navClass('sample/03')">
-              <a href="#/sample/03">Sample 03</a>
-            </li>
-            <li ng-class="navClass('sample/04')">
-              <a href="#/sample/04">Sample 04</a>
-            </li>
-            <li ng-class="navClass('sample/05')">
-              <a href="#/sample/05">Sample 05</a>
-            </li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
-
-    <div class="container">
+    <div class="container" ngsf-fullscreen>
 
       <div ng-view />
 
@@ -130,6 +99,9 @@
     <!-- angular-bootstrap -->
     <script type="text/javascript" src="components/angular-bootstrap/ui-bootstrap.js"></script>
     <script type="text/javascript" src="components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
+    <script type="text/javascript" src="components/screenfull/dist/screenfull.min.js"></script>
+    <script type="text/javascript" src="components/angular-screenfull/dist/angular-screenfull.min.js"></script>
 
     <!-- scripts -->
     <script type="text/javascript" src="../src/scripts/adf.js"></script>
@@ -196,6 +168,40 @@
     <!-- travis widget -->
     <script type="text/javascript" src="widgets/travis/components/angular-md5/angular-md5.js"></script>
     <script type="text/javascript" src="widgets/travis/dist/adf-widget-travis.js"></script>
+
+      <!-- custom Charts -->
+      <script src="widgets/charts/components/highcharts/highcharts.js"></script>
+      <script type="text/javascript" src='widgets/charts/components/highcharts-ng/src/highcharts-ng.js'></script>
+
+    <script type="text/javascript" src="widgets/charts/src/underscore.js"></script>
+    <script type="text/javascript" src="widgets/charts/components/tabletop/src/tabletop.js"></script>
+    <script type="text/javascript" src="widgets/charts/src/theme.js"></script>
+
+    <script type="text/javascript" src="widgets/charts/src/charts.js"></script>
+
+    <script type="text/javascript" src="widgets/charts/src/chartService.js"></script>
+
+    <script type="text/javascript" src="widgets/charts/src/piechartCtrl.js"></script>
+    <script type="text/javascript" src="widgets/charts/src/columnchartCtrl.js"></script>
+    <script type="text/javascript" src="widgets/charts/src/stackedColumnCtrl.js"></script>
+    <script type="text/javascript" src="widgets/charts/src/linechartCtrl.js"></script>
+    <script type="text/javascript" src="widgets/charts/src/stackedBarChartCtrl.js"></script>
+    <script type="text/javascript" src="widgets/charts/src/trendlineCtrl.js"></script>
+    <script type="text/javascript" src="widgets/charts/src/textCtrl.js"></script>
+
+    <!-- largeNumbers -->
+    <script type="text/javascript" src="widgets/numbers/components/moment/moment.js"></script>
+    <script type="text/javascript" src="widgets/numbers/src/numbers.js"></script>
+    <script type="text/javascript" src="widgets/numbers/src/largeNumber.filter.js"></script>
+    <script type="text/javascript" src="widgets/numbers/src/largeNumber.ctrl.js"></script>
+    <script type="text/javascript" src="widgets/numbers/src/timer.js"></script>
+    <script type="text/javascript" src="widgets/numbers/src/timer.js"></script>
+
+    <!-- texteditor -->
+    <script type="text/javascript" src='widgets/text/components/angular-sanitize/angular-sanitize.min.js'></script>
+    <script type="text/javascript" src="widgets/text/node_modules/quill/dist/quill.js"></script>
+    <script type="text/javascript" src='widgets/text/components/ngQuill/src/ng-quill.min.js'></script>
+    <script type="text/javascript" src='widgets/text/src/texteditor.js'></script>
 
     <!-- inject:js -->
     <!-- endinject -->

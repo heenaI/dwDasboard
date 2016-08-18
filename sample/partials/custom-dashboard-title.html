@@ -15,6 +15,14 @@
       <li ng-if="options.editable && !editMode" ng-click="toggleEditMode()">
         <a href="">Edit dashboard</a>
       </li>
+      <li>
+      <a ngsf-toggle-fullscreen show-if-fullscreen-enabled>
+        <i show-if-fullscreen=false class="glyphicon glyphicon-fullscreen" title='title='fullscreen''></i>
+        <i show-if-fullscreen=true class="glyphicon glyphicon-fullscreen" title='exit full screen'></i>
+    </a>
+
+      </li>
+
       <li ng-if="options.editable && editMode" ng-click="toggleEditMode()">
         <a href="">Save changes</a>
       </li>
@@ -29,4 +37,5 @@
       </li>
     </ul>
   </div>
+
 </h1>

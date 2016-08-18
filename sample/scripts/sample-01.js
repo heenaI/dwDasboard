@@ -28,10 +28,14 @@ angular.module('sample-01', ['adf', 'LocalStorageModule'])
 
   var name = 'sample-01';
   var model = localStorageService.get(name);
+
   if (!model) {
     // set default model for demo purposes
     model = {
       title: "Sample 01",
+      addTemplateUrl : "partials/custom-dashboard-addwidget.html",
+      titleTemplateUrl : "partials/custom-dashboard-title.html",
+      editTemplateUrl: "partials/custom-dashboard-edit.html",
       structure: "4-8",
       rows: [{
         columns: [{

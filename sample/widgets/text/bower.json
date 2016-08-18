@@ -1,0 +1,33 @@
+{
+  "name": "adf-widget-texteditor",
+  "version": "0.1.0",
+  "main": "dist/adf-widget-texteditor.js",
+  "ignore": [
+    "bower.json",
+    ".bowerrc",
+    ".jshintrc",
+    ".gitignore",
+    "gulpfile.js",
+    "node_modules",
+    "package.json",
+    "components",
+    "src"
+  ],
+  "keywords": [
+    "dashboard",
+    "widget",
+    "adf",
+    "adf-widget"
+  ],
+  "description": "This is a text editor widget to create custom text elements for the dashboard",
+  "dependencies": {
+    "angular-dashboard-framework": "0.8.0",
+    "ngQuill": "ngquill#^1.5.2"
+  },
+  "devDependencies": {
+    "angular-local-storage": "0.1.5"
+  },
+  "resolutions": {
+    "angular": "1.2.28"
+  }
+}

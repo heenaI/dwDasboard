@@ -1,71 +1,77 @@
 'use strict';
 
-angular
-.module('adf.widget.charts', ['adf.provider', "highcharts-ng"])
-.config(RegisterWidgets);
-
-function RegisterWidgets(dashboardProvider) {
-  // template object for github widgets
-  var widget = {
-    reload: true,
-    category: 'Charts',
-    edit: {
-      templateUrl: '{widgetsPath}/github/src/edit.html'
-    }
-  };
-
-  var commitWidgets = angular.extend({
-     resolve: {
+angular.module('adf.widget.charts', ['adf.provider', "highcharts-ng"])
+  .config(function(dashboardProvider){
+    var widget = {
+      templateUrl: '{widgetsPath}/charts/src/view.html',
+      reload: true,
+      category: 'Charts',
+      resolve: {
         /* @ngInject */
         urls: function(chartService, config){
           if (config.path){
             return chartService.getSpreadsheet(config.path);
           }
         }
-      },
-  }, widget);
+      }
+  };
 
   dashboardProvider
       .widget('piechart', angular.extend({
-        title: 'Google Sheet Pie chart',
+        title: 'Pie chart',
         description: 'Creates custom Piechart with Google Sheets',
         controller: 'piechartCtrl',
-        templateUrl: '{widgetsPath}/charts/src/view.html'
-        }, commitWidgets))
-      .widget('columnchart', angular.extend({
-        title: 'Google Sheet Bar chart',
+      edit: {
+        templateUrl: '{widgetsPath}/charts/src/edit.html'
+      }
+
+        }, widget))
+      .widget('barchart', angular.extend({
+        title: 'Bar chart',
         description: 'Creates custom bar with Google Sheets',
-        controller: 'columnchartCtrl',
-        templateUrl: '{widgetsPath}/charts/src/view.html'
-        }, commitWidgets))
+        controller: 'barChartCtrl',
+      edit: {
+        templateUrl: '{widgetsPath}/charts/src/barchartedit.html'
+      }
+        }, widget))
       .widget('linechart', angular.extend({
-        title: 'Google Sheet Line chart',
+        title: 'Line chart',
         description: 'Creates custom line with Google Sheets',
         controller: 'linechartCtrl',
-        templateUrl: '{widgetsPath}/charts/src/view.html'
-        }, commitWidgets))
-      .widget('stacked', angular.extend({
-        title: 'Google Sheet stacked bar chart',
+      edit: {
+        templateUrl: '{widgetsPath}/charts/src/edit.html'
+      }
+        }, widget))
+      .widget('stackedbarChart', angular.extend({
+        title: 'Stacked bar chart',
         description: 'Creates custom stacked bar chart with Google Sheets',
         controller: 'stackedBarChartCtrl',
-        templateUrl: '{widgetsPath}/charts/src/view.html'
-        }, commitWidgets))
-      .widget('column', angular.extend({
-        title: 'Google Sheet column chart',
+      edit: {
+        templateUrl: '{widgetsPath}/charts/src/edit.html'
+      }
+        }, widget))
+      .widget('columnchart', angular.extend({
+        title: 'Column chart',
         description: 'Creates custom column chart with Google Sheets',
         controller: 'columnchartCtrl',
-        templateUrl: '{widgetsPath}/charts/src/view.html'
-        }, commitWidgets))
-      .widget('stacked column', angular.extend({
-        title: 'Google Sheet stacked column chart',
+      edit: {
+        templateUrl: '{widgetsPath}/charts/src/edit.html'
+      }
+        }, widget))
+      .widget('stackedcolumn', angular.extend({
+        title: 'Stacked column chart',
         description: 'Creates custom stacked column chart with Google Sheets',
         controller: 'stackedColumnCtrl',
-        templateUrl: '{widgetsPath}/charts/src/view.html'
-        }, commitWidgets))
+      edit: {
+        templateUrl: '{widgetsPath}/charts/src/edit.html'
+      }
+        }, widget))
       .widget('trendline', angular.extend({
-        title: 'Google Sheet trendline chart',
+        title: 'Double Axis chart',
         description: 'Creates custom trendline chart with Google Sheets',
         controller: 'trendlineCtrl',
-        templateUrl: '{widgetsPath}/charts/src/view.html'
-        }, commitWidgets));
-  };
+        edit: {
+        templateUrl: '{widgetsPath}/charts/src/doubleAxisedit.html'
+      }
+        }, widget));
+  });

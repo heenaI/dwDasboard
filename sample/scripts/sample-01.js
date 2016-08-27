@@ -26,71 +26,68 @@
 angular.module('sample-01', ['adf', 'LocalStorageModule'])
 .controller('sample01Ctrl', function($scope, localStorageService){
 
-  var name = 'sample-01';
+  var name = 'DW Entrance';
   var model = localStorageService.get(name);
 
   if (!model) {
     // set default model for demo purposes
     model = {
-      title: "Sample 01",
+      title: "DW Entrance",
       addTemplateUrl : "partials/custom-dashboard-addwidget.html",
       titleTemplateUrl : "partials/custom-dashboard-title.html",
       editTemplateUrl: "partials/custom-dashboard-edit.html",
-      structure: "4-8",
+      structure: "3-6-3",
       rows: [{
         columns: [{
-          styleClass: "col-md-4",
+          styleClass: "col-md-3",
           widgets: [{
-            type: "linklist",
+            fullScreen: false,
+            modalSize: 'lg',
+            type: "barchart",
             config: {
-              links: [{
-                title: "SCM-Manager",
-                href: "http://www.scm-manager.org"
-              }, {
-                title: "Github",
-                href: "https://github.com"
-              }, {
-                title: "Bitbucket",
-                href: "https://bitbucket.org"
-              }, {
-                title: "Stackoverflow",
-                href: "http://stackoverflow.com"
-              }]
+               path: "https://docs.google.com/spreadsheets/d/1fPvHFLqi9s6gngi-KpqTXQNQUFSpQWRT0XFvdKMlbyA/pubhtml"
             },
-            title: "Links"
+            title: "DW users around the world in Percent"
           }, {
-            type: "weather",
+            type: "largeNumbers",
             config: {
-              location: "Hildesheim"
+              sample: "135000000"
             },
-            title: "Weather Hildesheim"
-          }, {
-            type: "weather",
-            config: {
-              location: "Edinburgh"
-            },
-            title: "Weather"
-          }, {
-            type: "weather",
-            config: {
-              location: "Dublin,IE"
-            },
-            title: "Weather"
+            title: "Reach"
           }]
-        }, {
-          styleClass: "col-md-8",
-          widgets: [{
-            type: "randommsg",
-            config: {},
-            title: "Douglas Adams"
-          }, {
-            type: "markdown",
+        },
+        {
+          styleClass: "col-md-6",
+           widgets: [{
+            fullScreen: false,
+            modalSize: 'lg',
+            type: "piechart",
             config: {
-              content: "![scm-manager logo](https://bitbucket.org/sdorra/scm-manager/wiki/resources/scm-manager_logo.jpg)\n\nThe easiest way to share and manage your Git, Mercurial and Subversion repositories over http.\n\n* Very easy installation\n* No need to hack configuration files, SCM-Manager is completely configureable from its Web-Interface\n* No Apache and no database installation is required\n* Central user, group and permission management\n* Out of the box support for Git, Mercurial and Subversion\n* Full RESTFul Web Service API (JSON and XML)\n* Rich User Interface\n* Simple Plugin API\n* Useful plugins available ( f.e. Ldap-, ActiveDirectory-, PAM-Authentication)\n* Licensed under the BSD-License"
+               path: "https://docs.google.com/spreadsheets/d/17u3kEyPjBg3mvdR-tfr7beQbePwzoQFGij8s-Lc8kps/pubhtml"
             },
-            title: "Markdown"
+            title: "DW Employees"
+
+           }, {
+            type: "texteditor",
+            title: "DW Languages"
+           }
+            ]
+        },
+        {
+          styleClass: "col-md-3",
+           widgets: [{
+            type: "news",
+
+            config: {
+               url: "http://rss.dw.com/rdf/rss-en-all"
+            },
+            title: "Top News"
+
           }]
-        }]
+        }
+
+          ]
+
       }]
     };
   }

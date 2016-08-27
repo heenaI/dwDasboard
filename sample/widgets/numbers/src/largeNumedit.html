@@ -1,18 +1,20 @@
 
 <form role="form" class="form-inline">
-  <div class="form-group" id='selector'>
+  <div class="form-group">
+  <label>Prefix</label>
   <input type="text" class="form-control" id="sample" ng-model="config.sampleThree" placeholder="Enter Prefix">
-    <input type="text" class="form-control" id="sample" ng-model="config.sample" placeholder="Enter Number">
-
-
-                 <!-- <select class="form-control inline" id="format" ng-model="config.sampleTwo"
+  </div>
+   <div class="form-group">
+  <label>Enter Number</label>
+    <input type="number" class="form-control" id="sample" ng-model="config.sample" placeholder="Enter Number">
+    </div>
+   <!--  <select class="form-control inline" id="format" ng-model="config.sampleTwo"
                   ng-options='type for type in selectType' ng-change="selected()">
                   <option style="display:none" value="" class='formOptions'>select a type</option>
                 </select> -->
-  </div>
-
-</form>
-<div>
 <label>Enter Description</label>
 <input type="text" class="form-control" sampleDesc ng-model="config.sampleDesc" placeholder="write something here"></div>
+</form>
+<div>
+
 

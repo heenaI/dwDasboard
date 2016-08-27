@@ -70,7 +70,14 @@
     labels: {
      style: {
       color: '#E0E0E3'
-    }
+    },
+     title: {
+            enabled: true,
+            text: $scope.config.pathYaxis,
+            style: {
+                fontWeight: 'normal'
+            }
+        }
   },
   lineColor: '#707073',
   minorGridLineColor: '#505053',

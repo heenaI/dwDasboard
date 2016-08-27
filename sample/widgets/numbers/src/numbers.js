@@ -22,16 +22,6 @@ function RegisterWidgets(dashboardProvider) {
           templateUrl: '{widgetsPath}/numbers/src/largeNumedit.html',
           controller: 'NumberCtrl'
           }
-        }, widget))
-      .widget('Timeline', angular.extend({
-        title: 'Timeline',
-        description: 'creates timeline from a given date',
-        controller: 'TimerCtrl',
-        templateUrl: '{widgetsPath}/numbers/src/timerview.html',
-        edit: {
-          templateUrl: '{widgetsPath}/numbers/src/timeredit.html',
-          controller: 'TimerCtrl'
-          }
         }, widget));
 
 

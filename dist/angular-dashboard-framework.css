@@ -396,6 +396,30 @@ img {
   color: #002d59;
 }
 
+text {
+  font-size: 1em;
+  text-shadow: none;
+}
+
+blockquote {
+  background: none;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+}
+
+blockquote:before {
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+
+blockquote p {
+  display: inline;
+  font-size: 2em;
+}
+
 .adf-move {
   cursor: move;
   cursor: -webkit-grabbing;

@@ -49,7 +49,14 @@
     categories: series
   },
   yAxis: {
-      min: 0
+      min: 0,
+       title: {
+            enabled: true,
+            text: $scope.config.pathYaxis,
+            style: {
+                fontWeight: 'normal'
+            }
+        }
   },
 
   title: {

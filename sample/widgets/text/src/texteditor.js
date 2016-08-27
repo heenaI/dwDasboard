@@ -15,7 +15,12 @@ angular.module('adf.widget.texteditor', ['adf.provider', 'ngQuill'])
       });
   })
   .controller('textCtrl', function($scope, $sce){
-    $scope.trustedHtml = $sce.trustAsHtml($scope.config.sample);
+    if(!$scope.config.sample){
+      $scope.trustedHtml = $sce.trustAsHtml('<ul><li><h2>English</h2></li><li><h2>Kisuaheli</h2></li><li><h2>Arabic</h2></li><li><h2>Haussa</h2></li></ul><p>and there are 26 more langugaes covered by DW</p>')
+    } else {
+      $scope.trustedHtml = $sce.trustAsHtml($scope.config.sample);
+    }
+
 
 
   })

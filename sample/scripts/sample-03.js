@@ -25,58 +25,91 @@
 
 angular.module('sample-03', ['adf', 'LocalStorageModule'])
 .controller('sample03Ctrl', function($scope, localStorageService) {
-  var name = 'sample-03';
+  var name = 'Customer Service - March 2016';
   var model = localStorageService.get(name);
   if (!model) {
     // set default model for demo purposes
-    model = {
-      title: "Sample 03",
+
+   var model = {
+      title: "Customer Service - March 2016",
       addTemplateUrl : "partials/custom-dashboard-addwidget.html",
       titleTemplateUrl : "partials/custom-dashboard-title.html",
       editTemplateUrl: "partials/custom-dashboard-edit.html",
-      structure: "6-6",
+      structure: "3-6-3",
       rows: [{
-        columns: [{
-          styleClass: "col-md-6",
-          widgets: [{
-            title: 'Description',
-            titleTemplateUrl: 'partials/custom-widget-title.html',
-            editTemplateUrl: "partials/custom-dashboard-editwidget.html",
-            type: 'markdown',
+        columns: [
+        {
+          styleClass: "col-md-3",
+          widgets: [ {
+            title: 'Total Feedback',
+            type: 'largeNumbers',
             config: {
-              content: 'This sample uses a widget filter, to restrict the widget selection on the "add dialog".\n\nIt also shows the ability to use custom templates for the dashboard title and widget title.'
+              sample: '22000',
+              sampleDesc: ' '
+            }
+          },
+          {
+            title: 'New Customers',
+            type: 'largeNumbers',
+            config: {
+              sample: '3889',
+              sampleDesc: '+ 4% in comparison to Feburary 2016'
+            }
+          },
+          {
+            title: 'Total Feedback in March 2016',
+            type: 'largeNumbers',
+            config: {
+              sample: '22000'
             }
           }]
         }, {
           styleClass: "col-md-6",
           widgets: [{
-            title: 'Restangular',
-            titleTemplateUrl: 'partials/custom-widget-title.html',
-            type: 'githubAuthor',
+            title: 'Development of Feedback Over Time',
+            type: 'linechart',
             config: {
-              path: 'mgonto/restangular'
+              path: 'https://docs.google.com/spreadsheets/d/1psTcRqz2PEdSW4uB_xg2xPjTevLj2MQFtJyeibrz8U8/pubhtml',
+              pathYaxis: 'Number of Entries'
+            }
+          },
+          {
+            title: 'Entries According to Categories',
+            type: 'columnchart',
+            config: {
+              path: 'https://docs.google.com/spreadsheets/d/1FkPT5jTLnjmTJV3nz_UDDDOjfjZvkyF99AzchU4bUrw/pubhtml',
+              pathYaxis: 'Number of Entries'
             }
           }]
+        }, {
+          styleClass: "col-md-3",
+           widgets: [
+            {
+            title: 'Complement of the Month',
+            type: 'quotes',
+            config: {
+              sample: "Good Journalism!",
+              sampleAuthor: "T. Khan via YouTube"
+            }
+          },
+           {
+            title: 'New Customers According to the Language',
+            type: 'barchart',
+            config: {
+              path: 'https://docs.google.com/spreadsheets/d/1elKA1sf3g1gPNYGG9OxtrSEHqS5l1qGVG2Kb2BmIix8/pubhtml',
+              pathYaxis: 'Number of Entries'
+            }
+          }
+           ]
         }]
       }]
     };
   }
-  $scope.name = name;
+   $scope.name = name;
   $scope.model = model;
   $scope.collapsible = true;
-  $scope.maximizable = false;
-  $scope.enableConfirmDelete = true;
+  $scope.maximizable = true;
   $scope.categories = false;
-
-  // only allow github widgets
-  $scope.widgetFilter = function(widget, type){
-    return type.indexOf('github') >= 0 || type === 'markdown' || type === 'version';
-  };
-
-  // set our custom widget title template when widgets are added
-   $scope.$on('adfWidgetAdded',function(event,name,model,widget){
-     widget.titleTemplateUrl="partials/custom-widget-title.html";
-   });
 
   $scope.$on('adfDashboardChanged', function(event, name, model) {
     localStorageService.set(name, model);

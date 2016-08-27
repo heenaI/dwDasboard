@@ -1,0 +1,9 @@
+<div class="alert alert-info" ng-if="!config.sample">
+    Please insert a date
+  </div>
+<div ng-if="config.sample">
+<p ng-bind="daysfromNow()"  ng-style="{color: subColor()}" class='boldDate' type='date'></p>
+<time ng-bind="dateToDisplay"  id='dateSubset' ng-model="config.sampleTwo"></time>
+
+</div>
+

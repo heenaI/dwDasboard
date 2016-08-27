@@ -1,0 +1,11 @@
+<p class="input-group">
+          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="config.sample" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+<label for="format">Format</label>
+                 <select class="form-control inline" id="format" ng-model="config.sampleTwo"
+                  ng-options='obj.format as obj.desc for obj in formats' ng-change="selected()">
+                </select>
+

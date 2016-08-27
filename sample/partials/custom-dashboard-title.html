@@ -1,41 +1,21 @@
-<div ng-if="editMode" class="alert alert-info">Currently in edit mode. Save or undo your changes when you are done.</div>
 <h1>
   {{model.title}}
-  <div class="dropdown pull-right" uib-dropdown>
-    <button class="btn btn-default btn-sm dropdown-toggle" uib-dropdown-toggle>
-      <i class="glyphicon glyphicon-option-vertical"></i>
-    </button>
-    <ul class="dropdown-menu">
-      <li ng-if="editMode" ng-click="addWidgetDialog()">
-        <a href="">Add widget</a>
-      </li>
-      <li ng-if="editMode" ng-click="editDashboardDialog()">
-        <a href="">Dashboard settings</a>
-      </li>
-      <li ng-if="options.editable && !editMode" ng-click="toggleEditMode()">
-        <a href="">Edit dashboard</a>
-      </li>
-      <li>
-      <a ngsf-toggle-fullscreen show-if-fullscreen-enabled>
+  <span style="font-size: 16px" class="pull-right">
+    <a href="" ng-if="editMode" title="{{ translate('ADF_DASHBOARD_TITLE_TOOLTIP_ADD') }}" ng-click="addWidgetDialog()">
+      <i class="glyphicon glyphicon-plus-sign"></i>
+    </a>
+    <a href="" ng-if="editMode" title="{{ translate('ADF_COMMON_EDIT_DASHBOARD') }}" ng-click="editDashboardDialog()">
+      <i class="glyphicon glyphicon-cog"></i>
+    </a>
+    <a href="" ng-if="options.editable" title="{{editMode ? translate('ADF_DASHBOARD_TITLE_TOOLTIP_SAVE') : translate('ADF_DASHBOARD_TITLE_TOOLTIP_EDIT_MODE') }}" ng-click="toggleEditMode()">
+      <i class="glyphicon" x-ng-class="{'glyphicon-edit' : !editMode, 'glyphicon-save' : editMode}"></i>
+    </a>
+    <a href="" ng-if="editMode" title="{{ translate('ADF_DASHBOARD_TITLE_TOOLTIP_UNDO') }}" ng-click="cancelEditMode()">
+      <i class="glyphicon glyphicon-repeat adf-flip"></i>
+    </a>
+     <a ngsf-toggle-fullscreen show-if-fullscreen-enabled >
         <i show-if-fullscreen=false class="glyphicon glyphicon-fullscreen" title='title='fullscreen''></i>
         <i show-if-fullscreen=true class="glyphicon glyphicon-fullscreen" title='exit full screen'></i>
     </a>
-
-      </li>
-
-      <li ng-if="options.editable && editMode" ng-click="toggleEditMode()">
-        <a href="">Save changes</a>
-      </li>
-      <li ng-if="options.editable && editMode" ng-click="collapseAll(true)">
-        <a href="">Collapse All</a>
-      </li>
-      <li ng-if="options.editable && editMode" ng-click="collapseAll(false)">
-        <a href="">Expand All</a>
-      </li>
-      <li ng-if="editMode" ng-click="cancelEditMode()">
-        <a href="">Undo changes</a>
-      </li>
-    </ul>
-  </div>
-
+  </span>
 </h1>

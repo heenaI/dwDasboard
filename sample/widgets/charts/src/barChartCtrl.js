@@ -3,7 +3,6 @@
 
   angular.module('adf.widget.charts')
   .controller('barChartCtrl', function($scope, urls, config) {
-    // console.log(JSON.stringify(urls))
     function countObjectKeys(obj) {
      return Object.keys(obj).length;
    }
@@ -46,51 +45,22 @@
     text: ' '
   },
   xAxis: {
-    tickColor: '#fff',
     categories: series,
-    gridLineColor: '#707073',
-    labels: {
-     style: {
-      color: '#E0E0E3'
-    }
-  },
-  lineColor: '#707073',
-  minorGridLineColor: '#505053',
-  tickColor: '#707073',
-  title: {
-   style: {
-    color: '#A0A0A3'
-
-  }
-  }
+      title: {
+            enabled: true,
+            text: $scope.config.pathXaxis,
+            style: {
+                fontWeight: 'normal'
+            }
+        }
   },
   yAxis: {
-    tickColor: '#fff',
-    gridLineColor: '#707073',
-    labels: {
-     style: {
-      color: '#E0E0E3'
-    }
+      min: 0
   },
-  lineColor: '#707073',
-  minorGridLineColor: '#505053',
-  tickColor: '#707073',
-  tickWidth: 1,
-  title: {
-   style: {
-    color: '#A0A0A3'
-  }
-  },
-  min: 0,
+
   title: {
     text: ' '
-  }
   },
-  plotLines: [{
-    value: 0,
-    width: 1,
-    color: '#808080'
-  }],
   options: {
     chart: {
       type: 'bar',
@@ -98,40 +68,9 @@
 
     },
     plotOptions: {
-      column: {
-        dataLabels: {
-          enabled: true
-        }
-      },
-          series: {
-           dataLabels: {
-            color: '#B0B0B3'
           },
-          marker: {
-            lineColor: '#333'
-          }
-          },
-        boxplot: {
-         fillColor: '#505053'
-         },
-       candlestick: {
-         lineColor: 'white'
-         },
-       errorbar: {
-         color: 'white'
-       }
-
-      },
       legend: {
-        itemStyle: {
-         color: '#E0E0E3'
-       },
-       itemHoverStyle: {
-         color: '#FFF'
-       },
-       itemHiddenStyle: {
-         color: '#606063'
-       }
+       reversed: true
       }},
 
   series: new_data

@@ -25,46 +25,87 @@
 
 angular.module('sample-02', ['adf', 'LocalStorageModule'])
 .controller('sample02Ctrl', function($scope, localStorageService) {
-  var name = 'sample-02';
+
+
+  var name = 'UBRE';
   var model = localStorageService.get(name);
   if (!model) {
     // set default model for demo purposes
 
     model = {
-      title: "Sample 02",
-      structure: "6-6",
+      title: "UBRE",
+      addTemplateUrl : "partials/custom-dashboard-addwidget.html",
+      titleTemplateUrl : "partials/custom-dashboard-title.html",
+      editTemplateUrl: "partials/custom-dashboard-edit.html",
+      structure: "3-6-3",
       rows: [{
         columns: [{
-          styleClass: "col-md-6",
+          styleClass: "col-md-3",
           widgets: [{
-            fullScreen: false,
-            modalSize: 'lg',
-            type: "markdown",
+            type: "timeline",
             config: {
-              content: "# angular-dashboard-framework\n\n> Dashboard framework with Angular.js and Twitter Bootstrap.\n\nThe api of angular-dashboard-framework (adf) is documented [here](http://angular-dashboard-framework.github.io/angular-dashboard-framework/docs/). A getting\nstarted guide can be found [here](https://github.com/angular-dashboard-framework/angular-dashboard-framework/wiki/Getting-started).\nFollow me ([@ssdorra](https://twitter.com/ssdorra)) on twitter for latest updates and news about adf.\n\n## Demo\n\nA live demo of the adf can be viewed [here](http://angular-dashboard-framework.github.io/angular-dashboard-framework/). The demo uses html5 localStorage to store the state of the dashboard. The source of the demo can be found [here](https://github.com/angular-dashboard-framework/angular-dashboard-framework/tree/master/sample).\n\nA more dynamic example can be found [here](https://github.com/angular-dashboard-framework/adf-dynamic-example).\n\n## Build from source\n\nInstall bower and gulp:\n\n```bash\nnpm install -g bower\nnpm install -g gulp\n```\n\nClone the repository:\n\n```bash\ngit clone https://github.com/angular-dashboard-framework/angular-dashboard-framework\ncd angular-dashboard-framework\n```\n\nInstall npm and bower dependencies:\n\n```bash\nnpm install\nbower install\n```\n\nCheckout git submodule widgets:\n\n```bash\ngit submodule init\ngit submodule update\n```\n\nYou can start the sample dashboard, by using the serve gulp task:\n\n```bash\ngulp serve\n```\n\nNow you open the sample in your browser at http://localhost:9001/sample\n\nOr you can create a release build of angular-dashboard-framework and the samples:\n\n```bash\ngulp all\n```\nThe sample and the final build of angular-dashboard-framework are now in the dist directory."
+              sample: '09/24/2016',
+              sampleTwo: 'Do MMM YYYY'
             },
-            title: "Markdown"
+            title: "Project Deadline"
+          }, {
+            type: "stackedcolumn",
+            config: {
+              path: "https://docs.google.com/spreadsheets/d/1qnnWN88d19Qp9CQqzq7o2pMypTvIIFvTt_DsFslol8w/pubhtml"
+            },
+            title: "Open Tasks"
           }]
         }, {
           styleClass: "col-md-6",
           widgets: [{
-            fullScreen: false,
-            modalSize: 'sm',
-            type: "githubAuthor",
+            fullScreen: true,
+            modalSize: 'lg',
+            type: "linechart",
             config: {
-              path: "angular/angular.js"
+              path: "https://docs.google.com/spreadsheets/d/1PzvEXQ_pHzMvbAyWIQe3BsOGOB1PHltkPouCA0S_2J4/pubhtml"
             },
-            title: "Github Author"
+            title: "Completed Training of DW Employees"
           }, {
             fullScreen: true,
             //modalSize: 'lg',
-            type: "githubHistory",
+            type: "texteditor",
             config: {
-              path: "angular-dashboard-framework/angular-dashboard-framework"
-            },
-            title: "Github History"
+              sample: "<h1> Missing Features</h1><ul><li>Video Embedding</li><li>Twitter Share</li><li>Headlines</li></ul><br><h1>Project Head: Ruth Kühn - 3333</h1>"
+                          },
+            title: "Work on new CMS"
           }]
+        },
+        {
+           styleClass: "col-md-3",
+        widgets: [{
+          type: "largeNumbers",
+            config: {
+              sample: "130",
+              sampleDesc: "Days ago on March 15th 2016"
+                          },
+            title: "Project Start"
+
+        },{
+          type: "largeNumbers",
+            config: {
+              sample: "15",
+              sampleDesc: "3 more people than last week"
+                          },
+            title: "Staff involved in Project"
+
+        },{
+          type: "largeNumbers",
+            config: {
+              sample: "989",
+              sampleDesc: "That looks good. Keep it up :-)"
+                          },
+            title: "Completed Tasks"
+
         }]
+
+        }
+
+        ]
       }]
     };
   }

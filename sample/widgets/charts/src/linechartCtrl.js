@@ -49,7 +49,14 @@ angular.module('adf.widget.charts')
     categories: series
   },
   yAxis: {
-      min: 0
+      min: 0,
+      title: {
+            enabled: true,
+            text: $scope.config.pathYaxis,
+            style: {
+                fontWeight: 'normal'
+            }
+        }
   },
 
   title: {
@@ -57,7 +64,7 @@ angular.module('adf.widget.charts')
   },
   options: {
     chart: {
-      type: 'area',
+      type: 'spline',
       backgroundColor: 'none'
 
     },

@@ -57,11 +57,11 @@
   },
   yAxis: [{ // Primary yAxis
             title: {
-                text: new_data[0].name
+                text: $scope.config.pathPrimary
             }
         }, { // Secondary yAxis
             title: {
-                text: new_data[1].name
+                text: $scope.config.pathSecondary
             },
             opposite: true
         }],

@@ -9,7 +9,7 @@
     decPlaces = Math.pow(10, decPlaces);
 
     // Enumerate number abbreviations
-    var abbrev = [" k", " mil", " bill"];
+    var abbrev = [" k", " M", " B"];
 
     // Go through the array backwards, so we do the largest first
     for (var i = abbrev.length - 1; i >= 0; i--) {

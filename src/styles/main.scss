@@ -311,10 +311,9 @@ img{
 }
 
 .boldDate{
-  font-size: 7em;
-  font-weight: bold;
+  font-size: 5em;
+  font-weight: 900;
   text-align: center;
-  line-height: 1em;
 }
 #dateSubset{
   text-align: right;
@@ -329,6 +328,7 @@ img{
 
 #sampleDesc{
   color: #badfe5;
+  text-align: center;
 }
 
 .highcharts-legend{
@@ -389,6 +389,14 @@ blockquote p {
   display: inline;
   font-size: 2em;
 }
+.smallText{
+  text-align: center;
+  font-size: 1em;
+  font-weight: bold;
+}
 
+.highcharts-axis-labels.highcharts-xaxis-labels > text > tspan{
+  font-size: 1em;
+}
 @import "edit";
 @import "structure-preview";

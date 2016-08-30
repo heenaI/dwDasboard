@@ -1,5 +1,5 @@
 {
-  "name": "adf-widget-timeline ",
+  "name": "adf-widget-timeline",
   "version": "0.1.0",
   "main": "dist/adf-widget-timeline .js",
   "ignore": [

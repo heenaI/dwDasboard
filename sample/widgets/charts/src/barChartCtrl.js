@@ -10,15 +10,7 @@
       //clean sort data
 
       if(urls){
-        if(countObjectKeys(urls)<=2){
-          var new_data = urls.map(function(el) {
-           return {
-            "name": el[Object.keys(el)[0]],
-            "value": +el[Object.keys(el)[1]]
-          }
-        });
-        } else if(countObjectKeys(urls)>2){
-
+        if(countObjectKeys(urls)){
           var series = [];
           for(var i=0; i<urls.length; i++){
             series.push(_.values(urls[i])[0])
@@ -33,8 +25,7 @@
                 data: _.map(urls, k).map(Number)}
                 ;
               });
-
-          }
+        }
 
           console.log(JSON.stringify(new_data))
 
@@ -52,10 +43,23 @@
             style: {
                 fontWeight: 'normal'
             }
-        }
+        },
+        labels: {
+                style: {
+                    fontSize:'15px',
+                    fontWeight: 'bold'
+                }
+            }
   },
   yAxis: {
-      min: 0
+      allowDecimals: false,
+      title: {
+            enabled: true,
+            text: $scope.config.pathYaxis,
+            style: {
+                fontWeight: 'normal'
+            }
+        }
   },
 
   title: {

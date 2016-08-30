@@ -1,7 +1,7 @@
-<div class="alert alert-info" ng-if="!config.sample">
-    Please insert a Number
-  </div>
-<div ng-if="config.sample">
-<h1 class='boldDate'>{{config.sampleThree}}{{config.sample | largeNumber:0}}</h1>
+<div>
+<h1 class='boldDate'>{{config.sampleThree}}</h1>
+<h1 class='boldDate'>{{config.sample | largeNumber:0}}</h1>
+<p class='smallText'>{{config.samplePostfix}}</p>
+
 <p id='sampleDesc'>{{config.sampleDesc}}</p>
 </div>

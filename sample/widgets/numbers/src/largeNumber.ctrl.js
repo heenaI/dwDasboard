@@ -3,13 +3,6 @@
 angular
 .module('adf.widget.numbers')
 .controller('NumberCtrl', function($scope, config, $filter){
-  if (!config.sample){
-      config.sample = 135000000;
-    }
-
-    if (!config.sampleDesc){
-      config.sampleDesc = "DW's users worldwide per week";
-    }
 
   $scope.selectType = ['Abbreviated Large Number', 'Percentage', 'Bytes']
   $scope.message = 'please select Number'

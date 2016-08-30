@@ -26,13 +26,13 @@
 angular.module('sample-01', ['adf', 'LocalStorageModule'])
 .controller('sample01Ctrl', function($scope, localStorageService){
 
-  var name = 'DW Entrance';
+  var name = 'sample-01';
   var model = localStorageService.get(name);
 
   if (!model) {
     // set default model for demo purposes
     model = {
-      title: "DW Entrance",
+      title: "Willkommen bei der Deutsche Welle",
       addTemplateUrl : "partials/custom-dashboard-addwidget.html",
       titleTemplateUrl : "partials/custom-dashboard-title.html",
       editTemplateUrl: "partials/custom-dashboard-edit.html",
@@ -41,6 +41,40 @@ angular.module('sample-01', ['adf', 'LocalStorageModule'])
         columns: [{
           styleClass: "col-md-3",
           widgets: [{
+            type: "largeNumbers",
+            config: {
+              sample: "135000000",
+              samplePostfix: "Benutzer pro Woche",
+              sampleDesc: "+17 Mio. im Vergleich zu 2015"
+              },
+            title: "Gesamtzahl Nutzer pro Woche"
+            }, {
+            type: "largeNumbers",
+            config: {
+              sample: "66000000",
+              samplePostfix: "Benutzer pro Woche",
+              sampleDesc: "+11 Mio. im Vergleich zu 2015"
+            },
+            title: "Gesamtzahl TV Nutzer pro Woche"
+          }, {
+            type: "largeNumbers",
+            config: {
+              sample: "40000000",
+              sampleDesc: "Vor allem die Sprachen: Haussa + Kisuaheli"
+            },
+            title: "Gesamtzahl Radionutzer pro Woche"
+          }, {
+            type: "largeNumbers",
+            config: {
+              sample: "29000000",
+              sampleDesc: "Über Internet: DW App und Social Media"
+            },
+            title: "Gesamtzahl der Digitalnutzer pro Woche"
+          }]
+        },
+        {
+          styleClass: "col-md-6",
+           widgets: [{
             fullScreen: false,
             modalSize: 'lg',
             type: "barchart",
@@ -49,33 +83,36 @@ angular.module('sample-01', ['adf', 'LocalStorageModule'])
             },
             title: "DW users around the world in Percent"
           }, {
-            type: "largeNumbers",
-            config: {
-              sample: "135000000"
-            },
-            title: "Reach"
-          }]
-        },
-        {
-          styleClass: "col-md-6",
-           widgets: [{
             fullScreen: false,
             modalSize: 'lg',
-            type: "piechart",
+            type: "barchart",
             config: {
                path: "https://docs.google.com/spreadsheets/d/17u3kEyPjBg3mvdR-tfr7beQbePwzoQFGij8s-Lc8kps/pubhtml"
             },
-            title: "DW Employees"
+            title: "Zahl der Mitarbeiter an den Standorten Bonn und Berlin"
 
-           }, {
-            type: "texteditor",
-            title: "DW Languages"
-           }
-            ]
+           }]
         },
         {
           styleClass: "col-md-3",
            widgets: [{
+            type: "largeNumbers",
+            config: {
+              sampleThree: "Englisch",
+              sample: "30000000",
+              samplePostfix: "Nutzer pro Woche"
+              },
+            title: "Erfolgreichste Sprache"
+            },{
+            type: "largeNumbers",
+            config: {
+              sampleThree: "Arabisch",
+              sample: "+ 50%",
+              samplePostfix: "Nutzer pro Woche",
+              sampleDesc: "im Vergleich zum Vorjahr"
+              },
+            title: "Stärkste Wachstum"
+            }, {
             type: "news",
 
             config: {

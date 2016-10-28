@@ -7,6 +7,7 @@ angular.module('sample', [
   'adf.widget.texteditor', 'ngSanitize', 'adf.widget.timeline', 'adf.widget.quotes'
 ])
 .config(function(dashboardProvider, $routeProvider, localStorageServiceProvider){
+
   dashboardProvider.widgetsPath('widgets/');
   localStorageServiceProvider.setPrefix('adf');
 
@@ -51,5 +52,7 @@ angular.module('sample', [
     var currentRoute = $location.path().substring(1) || 'Sample 01';
     return page === currentRoute || new RegExp(page).test(currentRoute) ? 'active' : '';
   };
+
+
 
 });

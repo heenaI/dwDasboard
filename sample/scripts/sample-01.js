@@ -28,11 +28,13 @@ angular.module('sample-01', ['adf', 'LocalStorageModule'])
 
   var name = 'sample-01';
   var model = localStorageService.get(name);
+    console.log(typeof(model))
+
 
   if (!model) {
     // set default model for demo purposes
     model = {
-      title: "Willkommen bei der Deutsche Welle",
+      title: "Deutsche Welle: Wichtige Kennzahlen",
       addTemplateUrl : "partials/custom-dashboard-addwidget.html",
       titleTemplateUrl : "partials/custom-dashboard-title.html",
       editTemplateUrl: "partials/custom-dashboard-edit.html",

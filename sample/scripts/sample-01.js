@@ -28,7 +28,7 @@ angular.module('sample-01', ['adf', 'LocalStorageModule'])
 
   var name = 'sample-01';
   var model = localStorageService.get(name);
-    console.log(typeof(model))
+    console.log($scope.adfModel)
 
 
   if (!model) {

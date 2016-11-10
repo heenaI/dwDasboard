@@ -340,6 +340,8 @@ angular.module('adf')
           return scope;
         }
 
+        //this is edit mode
+
         $scope.toggleEditMode = function(){
           $scope.editMode = ! $scope.editMode;
           if ($scope.editMode){
@@ -348,6 +350,7 @@ angular.module('adf')
               $rootScope.$broadcast('adfIsEditMode');
             }
           }
+
 
           if (!$scope.editMode){
             $rootScope.$broadcast('adfDashboardChanged', name, model);

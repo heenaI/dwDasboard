@@ -19,5 +19,17 @@
 /.idea/
 *.iml
 
+#dist
+dist/
+
 # brackets
 .brackets.json
+LICENSE.md
+CHANGELOG.md
+.travis.yml
+.gitmodules
+.gitignore
+.eslintrc
+.eslintignore
+.editorconfig
+.bowerrc

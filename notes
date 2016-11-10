@@ -1,0 +1,2 @@
+dashboard.js has edit mode which saves the dashboard
+Model has all the changed form of the dashboard, on every save send model to the server. when users signs back again set the model equal to the model last saved. 

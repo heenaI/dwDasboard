@@ -24,11 +24,7 @@ dist/
 
 # brackets
 .brackets.json
-
 notes
-
-LICENSE.md
-CHANGELOG.md
 .travis.yml
 .gitmodules
 .gitignore

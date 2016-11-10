@@ -1,3 +1,12 @@
+notes
+.travis.yml
+.gitmodules
+.gitignore
+.eslintrc
+.eslintignore
+.editorconfig
+.bowerrc
+
 # npm
 /node_modules/
 
@@ -20,15 +29,7 @@
 *.iml
 
 #dist
-dist/
+/dist/
 
 # brackets
 .brackets.json
-notes
-.travis.yml
-.gitmodules
-.gitignore
-.eslintrc
-.eslintignore
-.editorconfig
-.bowerrc

@@ -1,0 +1,18 @@
+<div class="modal-header">
+            <h3 class="modal-title">Select Color</h3>
+        </div>
+        <div class="modal-body">
+        <div class='form-group'>
+        <div class='col-sm-4 colorBox' ng-repeat="color in colors">
+        <label>
+        <input type="radio" ng-model="color.name" value='color.name'>
+            {{color.name}}
+        </label>
+            
+        </div>  
+        </div>
+            
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="closeDialog()">Cancel</button>
+        </div>

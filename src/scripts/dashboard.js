@@ -48,21 +48,29 @@
  */
 
 angular.module('adf')
-  .directive('adfDashboard', function ($rootScope, $log, $timeout, $uibModal, dashboard, adfTemplatePath) {
+  .directive('adfDashboard', function($rootScope, $log, $timeout, $uibModal, dashboard, adfTemplatePath) {
     'use strict';
 
-    function stringToBoolean(string){
-      switch(angular.isDefined(string) ? string.toLowerCase() : null){
-        case 'true': case 'yes': case '1': return true;
-        case 'false': case 'no': case '0': case null: return false;
-        default: return Boolean(string);
+    function stringToBoolean(string) {
+      switch (angular.isDefined(string) ? string.toLowerCase() : null) {
+        case 'true':
+        case 'yes':
+        case '1':
+          return true;
+        case 'false':
+        case 'no':
+        case '0':
+        case null:
+          return false;
+        default:
+          return Boolean(string);
       }
     }
 
     function copyWidgets(source, target) {
-      if ( source.widgets && source.widgets.length > 0 ){
+      if (source.widgets && source.widgets.length > 0) {
         var w = source.widgets.shift();
-        while (w){
+        while (w) {
           target.widgets.push(w);
           w = source.widgets.shift();
         }
@@ -70,17 +78,17 @@ angular.module('adf')
     }
 
     /**
-    * Copy widget from old columns to the new model
-    * @param object root the model
-    * @param array of columns
-    * @param counter
-    */
+     * Copy widget from old columns to the new model
+     * @param object root the model
+     * @param array of columns
+     * @param counter
+     */
     function fillStructure(root, columns, counter) {
       counter = counter || 0;
 
       if (angular.isDefined(root.rows)) {
-        angular.forEach(root.rows, function (row) {
-          angular.forEach(row.columns, function (column) {
+        angular.forEach(root.rows, function(row) {
+          angular.forEach(row.columns, function(column) {
             // if the widgets prop doesn't exist, create a new array for it.
             // this allows ui.sortable to do it's thing without error
             if (!column.widgets) {
@@ -90,7 +98,7 @@ angular.module('adf')
             // if a column exist at the counter index, copy over the column
             if (angular.isDefined(columns[counter])) {
               // do not add widgets to a column, which uses nested rows
-              if (angular.isUndefined(column.rows)){
+              if (angular.isUndefined(column.rows)) {
                 copyWidgets(columns[counter], column);
                 counter++;
               }
@@ -105,16 +113,16 @@ angular.module('adf')
     }
 
     /**
-    * Read Columns: recursively searches an object for the 'columns' property
-    * @param object model
-    * @param array  an array of existing columns; used when recursion happens
-    */
+     * Read Columns: recursively searches an object for the 'columns' property
+     * @param object model
+     * @param array  an array of existing columns; used when recursion happens
+     */
     function readColumns(root, columns) {
       columns = columns || [];
 
       if (angular.isDefined(root.rows)) {
-        angular.forEach(root.rows, function (row) {
-          angular.forEach(row.columns, function (col) {
+        angular.forEach(root.rows, function(row) {
+          angular.forEach(row.columns, function(col) {
             columns.push(col);
             // keep reading columns until we can't any more
             readColumns(col, columns);
@@ -125,21 +133,21 @@ angular.module('adf')
       return columns;
     }
 
-    function changeStructure(model, structure){
+    function changeStructure(model, structure) {
       var columns = readColumns(model);
       var counter = 0;
 
       model.rows = angular.copy(structure.rows);
 
-      while ( counter < columns.length ){
+      while (counter < columns.length) {
         counter = fillStructure(model, columns, counter);
       }
     }
 
-    function createConfiguration(type){
+    function createConfiguration(type) {
       var cfg = {};
       var config = dashboard.widgets[type].config;
-      if (config){
+      if (config) {
         cfg = angular.copy(config);
       }
       return cfg;
@@ -150,24 +158,24 @@ angular.module('adf')
      *
      * @param dashboard model
      */
-    function findFirstWidgetColumn(model){
+    function findFirstWidgetColumn(model) {
       var column = null;
-      if (!angular.isArray(model.rows)){
+      if (!angular.isArray(model.rows)) {
         $log.error('model does not have any rows');
         return null;
       }
-      for (var i=0; i<model.rows.length; i++){
+      for (var i = 0; i < model.rows.length; i++) {
         var row = model.rows[i];
-        if (angular.isArray(row.columns)){
-          for (var j=0; j<row.columns.length; j++){
+        if (angular.isArray(row.columns)) {
+          for (var j = 0; j < row.columns.length; j++) {
             var col = row.columns[j];
-            if (!col.rows){
+            if (!col.rows) {
               column = col;
               break;
             }
           }
         }
-        if (column){
+        if (column) {
           break;
         }
       }
@@ -181,11 +189,11 @@ angular.module('adf')
      * @param widget to add to model
      * @param name name of the dashboard
      */
-    function addNewWidgetToModel(model, widget, name){
-      if (model){
+    function addNewWidgetToModel(model, widget, name) {
+      if (model) {
         var column = findFirstWidgetColumn(model);
-        if (column){
-          if (!column.widgets){
+        if (column) {
+          if (!column.widgets) {
             column.widgets = [];
           }
           column.widgets.unshift(widget);
@@ -205,7 +213,7 @@ angular.module('adf')
      *
      * @param widget type
      */
-    function isEditModeImmediate(type){
+    function isEditModeImmediate(type) {
       var widget = dashboard.widgets[type];
       return widget && widget.edit && widget.edit.immediate;
     }
@@ -216,9 +224,9 @@ angular.module('adf')
      * @param dashboard scope
      * @param widget
      */
-    function openEditMode($scope, widget){
+    function openEditMode($scope, widget) {
       // wait some time before fire enter edit mode event
-      $timeout(function(){
+      $timeout(function() {
         $scope.$broadcast('adfWidgetEnterEditMode', widget);
       }, 200);
     }
@@ -234,9 +242,9 @@ angular.module('adf')
     function split(object, size) {
       var arr = [];
       var i = 0;
-      angular.forEach(object, function(value, key){
+      angular.forEach(object, function(value, key) {
         var index = i++ % size;
-        if (!arr[index]){
+        if (!arr[index]) {
           arr[index] = {};
         }
         arr[index][key] = value;
@@ -251,17 +259,19 @@ angular.module('adf')
      *
      * @return array of categories
      */
-    function createCategories(widgets){
+    function createCategories(widgets) {
       var categories = {};
-      angular.forEach(widgets, function(widget, key){
+      angular.forEach(widgets, function(widget, key) {
         var category = widget.category;
         // if the widget has no category use a default one
-        if (!category){
+        if (!category) {
           category = 'Miscellaneous';
         }
         // push widget to category array
-        if (angular.isUndefined(categories[category])){
-          categories[category] = {widgets: {}};
+        if (angular.isUndefined(categories[category])) {
+          categories[category] = {
+            widgets: {}
+          };
         }
         categories[category].widgets[key] = widget;
       });
@@ -271,7 +281,7 @@ angular.module('adf')
     return {
       replace: true,
       restrict: 'EA',
-      transclude : false,
+      transclude: false,
       scope: {
         structure: '@',
         name: '@',
@@ -284,7 +294,7 @@ angular.module('adf')
         adfWidgetFilter: '=',
         categories: '@'
       },
-      controller: function($scope){
+      controller: function($scope) {
         var model = {};
         var structure = {};
         var widgetFilter = null;
@@ -297,23 +307,23 @@ angular.module('adf')
           if (newVal !== null || (oldVal === null && newVal === null)) {
             model = $scope.adfModel;
             widgetFilter = $scope.adfWidgetFilter;
-            if ( ! model || ! model.rows ){
+            if (!model || !model.rows) {
               structureName = $scope.structure;
               structure = dashboard.structures[structureName];
-              if (structure){
-                if (model){
+              if (structure) {
+                if (model) {
                   model.rows = angular.copy(structure).rows;
                 } else {
                   model = angular.copy(structure);
                 }
                 model.structure = structureName;
               } else {
-                $log.error( 'could not find structure ' + structureName);
+                $log.error('could not find structure ' + structureName);
               }
             }
 
             if (model) {
-              if (!model.title){
+              if (!model.title) {
                 model.title = 'Dashboard';
               }
               if (!model.titleTemplateUrl) {
@@ -342,9 +352,9 @@ angular.module('adf')
 
         //this is edit mode
 
-        $scope.toggleEditMode = function(){
-          $scope.editMode = ! $scope.editMode;
-          if ($scope.editMode){
+        $scope.toggleEditMode = function() {
+          $scope.editMode = !$scope.editMode;
+          if ($scope.editMode) {
             if (!$scope.continuousEditMode) {
               $scope.modelCopy = angular.copy($scope.adfModel, {});
               $rootScope.$broadcast('adfIsEditMode');
@@ -352,20 +362,22 @@ angular.module('adf')
           }
 
 
-          if (!$scope.editMode){
+          if (!$scope.editMode) {
             $rootScope.$broadcast('adfDashboardChanged', name, model);
           }
         };
 
         $scope.$on('adfToggleEditMode', function() {
-            $scope.toggleEditMode();
+          $scope.toggleEditMode();
         });
 
-        $scope.collapseAll = function(collapseExpandStatus){
-          $rootScope.$broadcast('adfDashboardCollapseExpand',{collapseExpandStatus : collapseExpandStatus});
+        $scope.collapseAll = function(collapseExpandStatus) {
+          $rootScope.$broadcast('adfDashboardCollapseExpand', {
+            collapseExpandStatus: collapseExpandStatus
+          });
         };
 
-        $scope.cancelEditMode = function(){
+        $scope.cancelEditMode = function() {
           $scope.editMode = false;
           if (!$scope.continuousEditMode) {
             $scope.modelCopy = angular.copy($scope.modelCopy, $scope.adfModel);
@@ -374,7 +386,7 @@ angular.module('adf')
         };
 
         // edit dashboard settings
-        $scope.editDashboardDialog = function(){
+        $scope.editDashboardDialog = function() {
           var editDashboardScope = getNewModalScope();
           // create a copy of the title, to avoid changing the title to
           // "dashboard" if the field is empty
@@ -389,7 +401,8 @@ angular.module('adf')
           editDashboardScope.split = split;
 
           var adfEditTemplatePath = adfTemplatePath + 'dashboard-edit.html';
-          if(model.editTemplateUrl) {
+
+          if (model.editTemplateUrl) {
             adfEditTemplatePath = model.editTemplateUrl;
           }
           var instance = $uibModal.open({
@@ -398,14 +411,14 @@ angular.module('adf')
             backdrop: 'static',
             size: 'lg'
           });
-          editDashboardScope.changeStructure = function(name, structure){
+          editDashboardScope.changeStructure = function(name, structure) {
             $log.info('change structure to ' + name);
             changeStructure(model, structure);
-            if (model.structure !== name){
+            if (model.structure !== name) {
               model.structure = name;
             }
           };
-          editDashboardScope.closeDialog = function(){
+          editDashboardScope.closeDialog = function() {
             // copy the new title back to the model
             model.title = editDashboardScope.copy.title;
             // close modal and destroy the scope
@@ -414,15 +427,16 @@ angular.module('adf')
           };
         };
 
+
         // add widget dialog
-        $scope.addWidgetDialog = function(){
+        $scope.addWidgetDialog = function() {
           var addScope = getNewModalScope();
           var model = $scope.model;
           var widgets;
-          if (angular.isFunction(widgetFilter)){
+          if (angular.isFunction(widgetFilter)) {
             widgets = {};
-            angular.forEach(dashboard.widgets, function(widget, type){
-              if (widgetFilter(widget, type, model)){
+            angular.forEach(dashboard.widgets, function(widget, type) {
+              if (widgetFilter(widget, type, model)) {
                 widgets[type] = widget;
               }
             });
@@ -435,12 +449,12 @@ angular.module('adf')
           addScope.translate = $scope.translate;
 
           // pass createCategories function to scope, if categories option is enabled
-          if ($scope.options.categories){
+          if ($scope.options.categories) {
             $scope.createCategories = createCategories;
           }
 
           var adfAddTemplatePath = adfTemplatePath + 'widget-add.html';
-          if(model.addTemplateUrl) {
+          if (model.addTemplateUrl) {
             adfAddTemplatePath = model.addTemplateUrl;
           }
 
@@ -451,7 +465,7 @@ angular.module('adf')
           };
 
           var instance = $uibModal.open(opts);
-          addScope.addWidget = function(widget){
+          addScope.addWidget = function(widget) {
             var w = {
               type: widget,
               config: createConfiguration(widget)
@@ -462,20 +476,51 @@ angular.module('adf')
             addScope.$destroy();
 
             // check for open edit mode immediately
-            if (isEditModeImmediate(widget)){
+            if (isEditModeImmediate(widget)) {
               openEditMode($scope, w);
             }
           };
-          addScope.closeDialog = function(){
+          addScope.closeDialog = function() {
             // close and destroy
             instance.close();
             addScope.$destroy();
           };
         };
+        // change color
+        $scope.changecolorDialogue = function() {
+          var addColorScope = getNewModalScope();
+          $scope.colors = [{
+            name: 'DW-Grey', panelbackground: '#f2f4f6'
+          }, {
+            name: 'DW-Pink', panelbackground: '#dc0f6c'
+          }, {
+            name: 'DW-Blue', panelbackground: '#009bff'
+          }, {
+            name: 'DW-Green', panelbackground: '#82b905'
+          }]
+
+          var adfEditColorPath = adfTemplatePath + 'dashboard-color.html';
+
+          var modalInstance = $uibModal.open({
+            scope: addColorScope,
+            templateUrl: adfEditColorPath,
+            size: 'lg'
+          });
+
+          addColorScope.closeDialog = function() {
+            // close and destroy
+            modalInstance.close();
+            addColorScope.$destroy();
+          };
+
+          console.log($scope.colors[0].name)
+
+        };
+
 
         $scope.addNewWidgetToModel = addNewWidgetToModel;
       },
-      link: function ($scope, $element, $attr) {
+      link: function($scope, $element, $attr) {
         // pass options to scope
         var options = {
           name: $attr.name,
@@ -485,7 +530,7 @@ angular.module('adf')
           collapsible: stringToBoolean($attr.collapsible),
           categories: stringToBoolean($attr.categories)
         };
-        if (angular.isDefined($attr.editable)){
+        if (angular.isDefined($attr.editable)) {
           options.editable = stringToBoolean($attr.editable);
         }
         $scope.options = options;

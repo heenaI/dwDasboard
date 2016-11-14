@@ -7,6 +7,7 @@ angular.module('sample', [
   'adf.widget.texteditor', 'ngSanitize', 'adf.widget.timeline', 'adf.widget.quotes'
 ])
 .config(function(dashboardProvider, $routeProvider, localStorageServiceProvider){
+ 
 
   dashboardProvider.widgetsPath('widgets/');
   localStorageServiceProvider.setPrefix('adf');
@@ -36,7 +37,7 @@ angular.module('sample', [
   });
 
 })
-.controller('navigationCtrl', function($scope, $location){
+.controller('navigationCtrl', function($scope, $location, $modal){
 
   $scope.navCollapsed = true;
 
@@ -53,6 +54,7 @@ angular.module('sample', [
     return page === currentRoute || new RegExp(page).test(currentRoute) ? 'active' : '';
   };
 
+ 
 
 
 });

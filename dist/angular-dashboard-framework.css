@@ -45,19 +45,25 @@
 }
 
 body {
-  background-color: #d7dadb;
-  font-family: 'Open Sans', sans-serif;
+  background-color: #F5F4F2;
+  font-family: arial, Georgia, Serif;
+  color: #3e3e3e;
   padding-top: 0px !important;
 }
 
+h1 {
+  font-size: 2em;
+}
+
 .panel-default > .panel-heading {
+  font-family: Georgia;
   color: #fff;
   background-color: #002d59;
   border-color: #ddd;
 }
 
 .panel-title {
-  font-size: 20px;
+  font-size: 1.45em;
 }
 
 .widget a {
@@ -72,6 +78,13 @@ body {
   color: #fff;
   background-color: #002d59;
   border-color: #ddd;
+}
+
+.panel-footer {
+  background-color: #002d59;
+  border: none;
+  font-weight: bold;
+  font-size: 0.8em;
 }
 
 .navbar-default {
@@ -428,6 +441,14 @@ blockquote p {
 
 .highcharts-axis-labels.highcharts-xaxis-labels > text > tspan {
   font-size: 1em;
+}
+
+.colorBox {
+  padding: 1%;
+}
+
+.colorBox p {
+  text-align: center;
 }
 
 .adf-move {

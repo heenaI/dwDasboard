@@ -490,14 +490,18 @@ angular.module('adf')
         $scope.changecolorDialogue = function() {
           var addColorScope = getNewModalScope();
           $scope.colors = [{
-            name: 'DW-Grey', panelbackground: '#f2f4f6'
+            name: 'DW-Grey', panelbackground: '#f2f4f6', model: 'grey'
           }, {
-            name: 'DW-Pink', panelbackground: '#dc0f6c'
+            name: 'DW-Pink', panelbackground: '#dc0f6c', model: 'pink'
           }, {
-            name: 'DW-Blue', panelbackground: '#009bff'
+            name: 'DW-Blue', panelbackground: '#009bff', model: 'blue'
           }, {
-            name: 'DW-Green', panelbackground: '#82b905'
+            name: 'DW-Green', panelbackground: '#82b905', model: 'green'
           }]
+
+          $scope.colorchnageDialogue = function(){
+            console.log($scope.colors[0].model)
+          }
 
           var adfEditColorPath = adfTemplatePath + 'dashboard-color.html';
 

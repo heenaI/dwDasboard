@@ -26,9 +26,10 @@
 
 angular.module('adf')
   .directive('adfWidget', function($injector, $q, $log, $uibModal, $rootScope, dashboard, adfTemplatePath) {
-
+      
     function preLink($scope) {
       var definition = $scope.definition;
+      
 
       //passs translate function from dashboard so we can translate labels inside html templates
       $scope.translate = dashboard.translate;

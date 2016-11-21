@@ -77,6 +77,7 @@ angular.module('adf')
       }
     }
 
+
     /**
      * Copy widget from old columns to the new model
      * @param object root the model
@@ -294,12 +295,14 @@ angular.module('adf')
         adfWidgetFilter: '=',
         categories: '@'
       },
-      controller: function($scope) {
+      controller: function($scope, localStorageService) {
         var model = {};
         var structure = {};
         var widgetFilter = null;
         var structureName = {};
         var name = $scope.name;
+        var color = $scope.selectedColor
+
 
         // Watching for changes on adfModel
         $scope.$watch('adfModel', function(oldVal, newVal) {
@@ -340,6 +343,7 @@ angular.module('adf')
         $scope.editMode = false;
         $scope.editClass = '';
 
+
         //passs translate function from dashboard so we can translate labels inside html templates
         $scope.translate = dashboard.translate;
 
@@ -358,6 +362,7 @@ angular.module('adf')
             if (!$scope.continuousEditMode) {
               $scope.modelCopy = angular.copy($scope.adfModel, {});
               $rootScope.$broadcast('adfIsEditMode');
+
             }
           }
 
@@ -366,6 +371,7 @@ angular.module('adf')
             $rootScope.$broadcast('adfDashboardChanged', name, model);
           }
         };
+
 
         $scope.$on('adfToggleEditMode', function() {
           $scope.toggleEditMode();
@@ -411,6 +417,7 @@ angular.module('adf')
             backdrop: 'static',
             size: 'lg'
           });
+
           editDashboardScope.changeStructure = function(name, structure) {
             $log.info('change structure to ' + name);
             changeStructure(model, structure);
@@ -418,6 +425,7 @@ angular.module('adf')
               model.structure = name;
             }
           };
+
           editDashboardScope.closeDialog = function() {
             // copy the new title back to the model
             model.title = editDashboardScope.copy.title;
@@ -487,28 +495,34 @@ angular.module('adf')
           };
         };
         // change color
+
         $scope.changecolorDialogue = function() {
           var addColorScope = getNewModalScope();
           $scope.colors = [{
-            name: 'DW-Grey', panelbackground: '#f2f4f6', model: 'grey'
+            name: 'DW-Grey',
+            model: 'grey',
+            panelbackground: '#f2f4f6'
           }, {
-            name: 'DW-Pink', panelbackground: '#dc0f6c', model: 'pink'
+            name: 'DW-Pink',
+            panelbackground: '#dc0f6c',
+            model: 'pink'
           }, {
-            name: 'DW-Blue', panelbackground: '#009bff', model: 'blue'
+            name: 'DW-Blue',
+            panelbackground: '#009bff',
+            model: 'blue'
           }, {
-            name: 'DW-Green', panelbackground: '#82b905', model: 'green'
+            name: 'DW-Green',
+            panelbackground: '#82b905',
+            model: 'green'
           }]
 
-          $scope.colorchnageDialogue = function(){
-            console.log($scope.colors[0].model)
-          }
+
 
           var adfEditColorPath = adfTemplatePath + 'dashboard-color.html';
 
           var modalInstance = $uibModal.open({
             scope: addColorScope,
-            templateUrl: adfEditColorPath,
-            size: 'lg'
+            templateUrl: adfEditColorPath
           });
 
           addColorScope.closeDialog = function() {
@@ -517,9 +531,33 @@ angular.module('adf')
             addColorScope.$destroy();
           };
 
-          console.log($scope.colors[0].name)
+          $scope.colorSectedDialgue = function(color) {
+            $scope.selectedColor = angular.copy(color.name)
+            if ($scope.selectedColor == 'DW-Pink') {
+              $rootScope.pink = true;
+              $rootScope.blue = false;
+              $rootScope.green = false;
+              $rootScope.grey = false;
+            } else if ($scope.selectedColor == 'DW-Blue') {
+              $rootScope.pink = false;
+              $rootScope.blue = true;
+              $rootScope.green = false;
+              $rootScope.grey = false;
+            }else if ($scope.selectedColor == 'DW-Green') {
+              $rootScope.pink = false;
+              $rootScope.blue = false;
+              $rootScope.green = true;
+              $rootScope.grey = false;
+            }else if ($scope.selectedColor == 'DW-Grey') {
+              $rootScope.pink = false;
+              $rootScope.blue = false;
+              $rootScope.green = true;
+              $rootScope.grey = true;
+            }
+          }
 
         };
+
 
 
         $scope.addNewWidgetToModel = addNewWidgetToModel;

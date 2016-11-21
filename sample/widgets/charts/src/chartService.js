@@ -9,7 +9,6 @@ angular.module('adf.widget.charts')
           key: path,
           callback: function(data, tabletop) {
             if (data){
-              var chart_title = tabletop.model_names;
               deferred.resolve(data);
 
             } else {

@@ -5,8 +5,8 @@ Highcharts.createElement('link', {
 }, null, document.getElementsByTagName('head')[0]);
 
 Highcharts.theme = {
-  colors: ["#2b908f", "#90ee7e", "#f45b5b", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee",
-    "#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
+  colors: ['#009BFF','#AAC30A','#DC0f6e',  '#82b905', '#96be00',  '#C8D205',
+           '#82141E', '#BE232D', '#E14614', '#EB6E14', '#EB8614', '#F0AA00'],
   chart: {
     backgroundColor: {
       linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
@@ -22,14 +22,12 @@ Highcharts.theme = {
   },
   title: {
     style: {
-      color: '#E0E0E3',
-      textTransform: 'uppercase',
-      fontSize: '20px'
+      color: '#3e3e3e'
     }
   },
   subtitle: {
     style: {
-      color: '#E0E0E3',
+      color: '#3e3e3e',
       textTransform: 'uppercase'
     }
   },
@@ -37,7 +35,8 @@ Highcharts.theme = {
     gridLineColor: '#707073',
     labels: {
       style: {
-        color: '#E0E0E3'
+        color: '#3e3e3e',
+        fontSize: '0.8em'
       }
     },
     lineColor: '#707073',
@@ -54,7 +53,7 @@ Highcharts.theme = {
     gridLineColor: '#707073',
     labels: {
       style: {
-        color: '#E0E0E3'
+        color: '#3e3e3e'
       }
     },
     lineColor: '#707073',
@@ -94,7 +93,8 @@ Highcharts.theme = {
   },
   legend: {
     itemStyle: {
-      color: '#E0E0E3'
+      color: '#3e3e3e',
+      fontSize: '1em'
     },
     itemHoverStyle: {
       color: '#FFF'

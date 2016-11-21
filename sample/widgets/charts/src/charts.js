@@ -9,11 +9,17 @@ angular.module('adf.widget.charts', ['adf.provider', "highcharts-ng"])
       resolve: {
         /* @ngInject */
         urls: function(chartService, config){
+          var data = chartService.getSpreadsheet(config.path)
+
           if (config.path){
             return chartService.getSpreadsheet(config.path);
           }
+          if (config.path){
+            return chartnameService.getNames(data);
+          }
         }
       }
+
   };
 
   dashboardProvider

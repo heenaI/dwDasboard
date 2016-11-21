@@ -11,6 +11,7 @@ angular.module('sample', [
 
   dashboardProvider.widgetsPath('widgets/');
   localStorageServiceProvider.setPrefix('adf');
+  console.log(localStorageServiceProvider)
 
   $routeProvider.when('/sample/01', {
     templateUrl: 'partials/sample.html',

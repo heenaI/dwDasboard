@@ -47,7 +47,7 @@
 }
 
 body{
-  background-color: #F5F4F2;
+  background-color: #F2f4f6;
   font-family: arial, Georgia, Serif;
   color: #3e3e3e;
   padding-top: 0px!important;
@@ -55,24 +55,50 @@ body{
 h1{
   font-size: 2em;
 }
-.panel-default > .panel-heading {
+
+.default .panel-heading{
+    font-family: Georgia;
+    color: #3e3e3e;
+
+    background-color: #fff;
+    border-color: #3e3e3e;
+}
+
+.default .panel-heading h3{
+font-weight: bold;
+}
+.pink .panel-heading{
     font-family: Georgia;
     color: #fff;
-    background-color: #002d59;
+    background-color: #dc0f6c;
+    border-color: #ddd;
+}
+
+.blue .panel-heading{
+    font-family: Georgia;
+    color: #fff;
+    background-color: #009bff;
+    border-color: #ddd;
+}
+
+.green .panel-heading{
+    font-family: Georgia;
+    color: #fff;
+    background-color: #82b905;
     border-color: #ddd;
 }
 .panel-title {
     font-size: 1.45em;
 }
 .widget a{
-  color: #fff;
+  color: #009BFF;
 }
 .dashboard-container h1 a{
-  color: #002d59;
+  color: #3e3e3e;
 }
-.panel-body {
-    color: #fff;
-    background-color: #002d59;
+.default .panel-body {
+    color: #3e3e3e;
+    background-color: #fff;
     border-color: #ddd
 }
 .panel-footer{
@@ -86,19 +112,16 @@ h1{
     background-color: #002d59;
 }
 .modal-header {
-    color: #fff;
-    background-color: #002d59;
-    border-color: #ddd;
+    color: #3e3e3e;
+    background-color: #fff;
 }
 .modal-body {
-    color: #fff;
-    background-color: #002d59;
-    border-color: #ddd
+    color: #3e3e3e;
+    background-color: #fff;
 }
 .modal-footer {
-   color: #fff;
-    background-color: #002d59;
-    border-color: #ddd
+   color: #3e3e3e;
+    background-color: #fff;
 }
 .fullscreen{
 background-color: #d7dadb;
@@ -326,6 +349,10 @@ img{
   font-size: 5em;
   font-weight: 900;
   text-align: center;
+  color: #009BFF;
+}
+.smallText {
+  color: #009BFF;
 }
 #dateSubset{
   text-align: right;
@@ -339,8 +366,9 @@ img{
 }
 
 #sampleDesc{
-  color: #badfe5;
+  color: #3e3e3e;
   text-align: center;
+  font-weight: bold;
 }
 
 .highcharts-legend{
@@ -373,12 +401,7 @@ background-color: white;
 .tab-content{
   padding-top: 2%;
 }
-.nav-tabs > li > a{
-  color: white;
-}
-.nav-tabs > li > a:hover{
-  color: #002d59;
-}
+
 
 text {
   font-size: 1em;
@@ -417,6 +440,16 @@ blockquote p {
 }
 .colorBox p{
   text-align: center;
+}
+.mdi-brightness-1:before {
+  font-size: 10em!important;
+}
+
+.DW-Grey{
+  width: 80%;
+}
+.default-color{
+  width: 70%;
 }
 
 @import "edit";

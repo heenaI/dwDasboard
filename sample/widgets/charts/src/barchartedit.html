@@ -1,12 +1,49 @@
-<form role="form">
+  <uib-tabset active="active">
+    <uib-tab index="0" heading="Add URL">
+    <form role="form">
     <div class="form-group">
         <label for="path">Google Spreadsheet URL</label>
         <input type="text" class="form-control" id="path" ng-model="config.path" placeholder="Enter URL">
+        </div>
+        </form>
+
+    </div>
+    </uib-tab>
+    
+    <uib-tab index="1" heading="Customize">
+        <form role="form">
+    <div class="form-group">
+        <label> Enable Legend</label>
+        <input type="checkbox" id="path" ng-model="config.legend">
+        <br>
+        <label> Enable X-axis</label>
+        <input type="checkbox" id="path" ng-model="config.xAxisLabels">
+    </div>
+        <div class="form-group">
+        <label>Arrange Values</label>
+        <br>
+        <label>Ascending</label>
+        <input type="checkbox" id="path" ng-model="config.ascending">
+        <br>
+        <label>Descending</label>
+        <input type="checkbox"  id="path" ng-model="config.descending">
 
     </div>
     <div class="form-group">
-        <label> Title for y-axis</label>
-        <input type="text" class="form-control" id="path" ng-model="config.pathYaxis" placeholder="Enter Title">
+        <label>Add a plot line</label>
+        <br>
+        <label>Value</label>
+        <input type="number" id="path" ng-model="config.plotLineValue" placeholder='enter number'>
+        <br>
+        <label>Text</label>
+        <input type="text" id="path" ng-model="config.plotLineLabel" placeholder='Enter Label'>
 
     </div>
 </form>
+      
+
+    </uib-tab>
+  </uib-tabset>
+
+
+

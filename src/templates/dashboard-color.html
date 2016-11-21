@@ -1,14 +1,13 @@
 <div class="modal-header">
-            <h3 class="modal-title">Select Color</h3>
+            <h3 class="modal-title">Select a color palette</h3>
         </div>
         <div class="modal-body">
         <div class='form-group'>
         <div class='row'>
         <div class='col-sm-4 colorBox' ng-repeat="color in colors">
-        <label>
-        <input type="radio" ng-click='colorchnageDialogue()' ng-value='color.name' model='color.model' class="radio">
-            {{color.name}}
-        </label>
+        <a class='mdi mdi-brightness-1' href='' ng-style="{'color': color.panelbackground}" title={{color.name}} 
+        ng-click='colorSectedDialgue(color)' value={{color.name}}></a>
+        
             
         </div>
             
@@ -18,5 +17,5 @@
             
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="closeDialog()">Cancel</button>
+            <button class="btn btn-primary" ng-click="closeDialog()">Close</button>
         </div>

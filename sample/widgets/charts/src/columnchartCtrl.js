@@ -37,8 +37,6 @@ angular.module('adf.widget.charts')
 
           }
 
-          console.log(JSON.stringify(new_data))
-
 
   // create chart
   $scope.chartConfig = {

@@ -8,14 +8,10 @@ angular.module('adf.widget.charts', ['adf.provider', "highcharts-ng"])
       category: 'Charts',
       resolve: {
         /* @ngInject */
-        urls: function(chartService, config){
-          var data = chartService.getSpreadsheet(config.path)
-
+        urls: function(chartService, config, $scope){
           if (config.path){
+            
             return chartService.getSpreadsheet(config.path);
-          }
-          if (config.path){
-            return chartnameService.getNames(data);
           }
         }
       }
@@ -45,7 +41,7 @@ angular.module('adf.widget.charts', ['adf.provider', "highcharts-ng"])
         description: 'Creates custom line with Google Sheets',
         controller: 'linechartCtrl',
       edit: {
-        templateUrl: '{widgetsPath}/charts/src/edit.html'
+        templateUrl: '{widgetsPath}/charts/src/linechartEdit.html'
       }
         }, widget))
       .widget('stackedbarChart', angular.extend({

@@ -13,31 +13,20 @@
     <uib-tab index="1" heading="Customize">
         <form role="form">
     <div class="form-group">
+    <label> Fill</label>
+        <input type="checkbox" id="path" ng-model="config.fill">
+        <br>
         <label> Enable Legend</label>
         <input type="checkbox" id="path" ng-model="config.legend">
         <br>
         <label> Enable X-axis</label>
         <input type="checkbox" id="path" ng-model="config.xAxisLabels">
-    </div>
-        <div class="form-group">
-        <h3>Arrange Values</h3>
         <br>
-        <label>Ascending</label>
-        <input type="checkbox" id="path" ng-model="config.ascending">
+        <label> Enable Y-axis</label>
+        <input type="checkbox" id="path" ng-model="config.yAxisLabels">
         <br>
-        <label>Descending</label>
-        <input type="checkbox"  id="path" ng-model="config.descending">
-
-    </div>
-    <div class="form-group">
-        <h3>Add a plot line</h3>
-        <br>
-        <label>Value</label>
-        <input type="number" id="path" ng-model="config.plotLineValue" placeholder='enter number'>
-        <br>
-        <label>Text</label>
-        <input type="text" id="path" ng-model="config.plotLineLabel" placeholder='Enter Label'>
-
+        <label> Enable Data Labels</label>
+        <input type="checkbox" id="path" ng-model="config.dataLabels">
     </div>
 </form>
 <h3>Change Color</h3>
@@ -48,9 +37,9 @@
     <uib-tab index="2" heading="Create Triggers">
     <h3></h3>
 <div  class="padding-bottom">
-<label>Give color</label>
-<input colorpicker type="text" id="path" ng-model="config.color" placeholder='enter color'>
-<label>to values up to</label>
+<label>Change line style to</label>
+<select id="path" ng-model="config.lineStyle" ng-options="dash for dash in config.dashStyles"></select>
+<label>for values greater than</label>
 <input type="number" id="path" ng-model="config.colorupto" placeholder='enter value'>   
 </div>
  <button type="button" class="btn btn-primary" ng-click="config.addNewZone()">

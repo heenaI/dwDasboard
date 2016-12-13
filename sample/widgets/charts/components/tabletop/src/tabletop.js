@@ -1,10 +1,10 @@
-(function(global) {
+(function() {
   "use strict";
 
   var inNodeJS = false;
-  if (typeof module !== 'undefined' && module.exports) {
+  if (typeof process !== 'undefined' && !process.browser) {
     inNodeJS = true;
-    var request = require('request');
+    var request = require('request'.trim()); //prevents browserify from bundling the module
   }
 
   var supportsCORS = false;
@@ -101,6 +101,11 @@
       this.log("You passed a new Google Spreadsheets url as the key! Attempting to parse.");
       this.key = this.key.match("d\\/(.*?)\\/pubhtml")[1];
     }
+    
+    if(/spreadsheets\/d/.test(this.key)) {
+      this.log("You passed the most recent version of Google Spreadsheets url as the key! Attempting to parse.");
+      this.key = this.key.match("d\\/(.*?)\/")[1];
+    }
 
     if(!this.key) {
       this.log("You need to pass Tabletop a key!");
@@ -189,7 +194,6 @@
       Insert the URL into the page as a script tag. Once it's loaded the spreadsheet data
       it triggers the callback. This helps you avoid cross-domain errors
       http://code.google.com/apis/gdata/samples/spreadsheet_sample.html
-
       Let's be plain-Jane and not use jQuery or anything.
     */
     injectScript: function(path, callback) {
@@ -298,12 +302,12 @@
       Need to use injectScript because the worksheet view that you're working from
       doesn't actually include the data. The list-based feed (/feeds/list/key..) does, though.
       Calls back to loadSheet in order to get the real work done.
-
       Used as a callback for the worksheet-based JSON
     */
     loadSheets: function(data) {
       var i, ilen;
       var toLoad = [];
+      this.googleSheetName = data.feed.title.$t;
       this.foundSheetNames = [];
 
       for(i = 0, ilen = data.feed.entry.length; i < ilen ; i++) {
@@ -319,7 +323,8 @@
             json_path += 'json-in-script';
           }
           if(this.query) {
-            json_path += "&sq=" + this.query;
+            // Query Language Reference (0.7)
+            json_path += "&tq=" + this.query;
           }
           if(this.orderby) {
             json_path += "&orderby=column:" + this.orderby.toLowerCase();
@@ -368,7 +373,6 @@
     
     /*
       Parse a single list-based worksheet, turning it into a Tabletop Model
-
       Used as a callback for the list-based JSON
     */
     loadSheet: function(data) {
@@ -407,7 +411,6 @@
   /*
     Tabletop.Model stores the attribute names and parses the worksheet data
       to turn it into something worthwhile
-
     Options should be in the format { data: XXX }, with XXX being the list-based worksheet
   */
   Tabletop.Model = function(options) {
@@ -554,14 +557,14 @@
     }
   };
 
-  if(inNodeJS) {
+  if(typeof module !== "undefined" && module.exports) { //don't just use inNodeJS, we may be in Browserify
     module.exports = Tabletop;
   } else if (typeof define === 'function' && define.amd) {
     define(function () {
         return Tabletop;
     });
   } else {
-    global.Tabletop = Tabletop;
+    window.Tabletop = Tabletop;
   }
 
-})(this);
+})();

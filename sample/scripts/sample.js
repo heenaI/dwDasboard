@@ -4,7 +4,7 @@ angular.module('sample', [
   'adf', 'adf.structures.base', 'adf.widget.news', 'adf.widget.weather', 'adf.widget.linklist',
   'adf.widget.github', 'adf.widget.clock', 'LocalStorageModule','sample-01', 'sample-02', 'sample-03',
   'sample-04', 'sample-05', 'ngRoute', 'angularScreenfull', 'adf.widget.charts', 'adf.widget.numbers',
-  'adf.widget.texteditor', 'ngSanitize', 'adf.widget.timeline', 'adf.widget.quotes'
+  'adf.widget.texteditor', 'ngSanitize', 'adf.widget.timeline', 'adf.widget.quotes', 'colorpicker.module'
 ])
 .config(function(dashboardProvider, $routeProvider, localStorageServiceProvider){
  

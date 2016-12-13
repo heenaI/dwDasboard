@@ -11,6 +11,7 @@ angular.module('adf.widget.charts')
             if (data){
               deferred.resolve(data);
 
+
             } else {
               deferred.reject(data.message);
 

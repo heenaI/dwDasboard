@@ -37,8 +37,6 @@
 
           }
 
-          console.log(JSON.stringify(new_data))
-
 
   // create chart
   $scope.chartConfig = {

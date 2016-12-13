@@ -2,6 +2,17 @@
 
 angular.module('adf.widget.charts')
   .controller('barChartCtrl', function($scope, urls, config) {
+
+    function changeColor(item) {
+      if (item == undefined) {
+        return 0
+      } else {
+        return item
+      }
+
+    }
+
+
     function countObjectKeys(obj) {
       return Object.keys(obj).length;
     }
@@ -10,45 +21,47 @@ angular.module('adf.widget.charts')
     //clean sort data
 
     if (urls) {
-      $scope.series = [];
-      if (countObjectKeys(urls)) {
-        
-        for (var i = 0; i < urls.length; i++) {
-          $scope.series.push(_.values(urls[i])[0])
-        }
-        // console.log(series)
-        var keys = _.keys(urls[0])
-          // console.log(keys)
-        keys = _.without(keys, keys[0])
+      $scope.config.series = [];
 
-        var arrangeddata = function(data) {
-          var array = _.sortBy(data, function(num) {
-            return num;
-          });
 
-          if ($scope.config.ascending == true) {
-            return array
 
-          } else if ($scope.config.descending == true) {
-            return array.reverse()
+      // console.log(series)
+      var keys = _.keys(urls[0])
+      var key = keys[1]
 
-          } else {
-            return data
-          }
+      keys = _.without(keys, keys[0])
 
-        }
+      if ($scope.config.ascending == true) {
+        urls.sort(function(obj1, obj2) {
+          return obj2[key] - obj1[key];
+        })
 
-        var new_data = _.map(keys, function(k) {
-          return {
-            name: k,
-            data: arrangeddata(_.map(urls, k).map(Number)),
-            dataLabels: {
-              enabled: $scope.config.xAxisLabels,
-              inside: true
-            }
-          };
-        });
+
+      } else if ($scope.config.descending == true) {
+        urls.sort(function(obj1, obj2) {
+          return obj1[key] - obj2[key];
+        })
+
       }
+
+      for (var i = 0; i < urls.length; i++) {
+        $scope.config.series.push(_.values(urls[i])[0])
+      }
+
+
+
+      var new_data = _.map(keys, function(k) {
+        return {
+          name: k,
+          data: _.map(urls, k).map(Number),
+          dataLabels: {
+            enabled: $scope.config.xAxisLabels,
+            inside: true
+          },
+          borderRadiusTopLeft: 7,
+          borderRadiusTopRight: 7
+        };
+      });
 
       var plotLinesData = function() {
         if (typeof($scope.config.plotLineValue) != 'number') {
@@ -61,7 +74,7 @@ angular.module('adf.widget.charts')
       // create chart
       $scope.chartConfig = {
         xAxis: {
-          categories: $scope.series,
+          categories: $scope.config.series,
           minorTickLength: 0,
           tickLength: 0,
           title: {
@@ -121,6 +134,12 @@ angular.module('adf.widget.charts')
 
           },
           plotOptions: {
+            bar: {
+              zones: [{
+                value: changeColor($scope.config.colorupto), // Values up to 10 (not including) ...
+                color: $scope.config.color // ... have the color blue.
+              }]
+            }
 
           },
           legend: {
@@ -132,9 +151,43 @@ angular.module('adf.widget.charts')
 
       }
     }
+    var zones = $scope.chartConfig.options.plotOptions.bar.zones
 
-    // var chart =  $('#chart1').highcharts();
-    // console.log(chart)
+    function createNewObj() {
+       var ind = zones.length +1
+       var value = $scope.config.value + ind
+       var color = $scope.config.zoneColor + ind
+
+      return {
+        value: function(){if(isNaN(value)==true){
+          return 0
+        } else {
+          return value
+        }}(), // Values up to 10 (not including) ...
+        color:  function(){
+          if(isNaN(color)==true){
+            return $scope.config.seriesColor
+          } else {
+            return color
+          }
+        }()  // ... have the color blue.
+      }
+
+    }
+
+    $scope.config.addNewZone = function(){
+      
+      var newObj = createNewObj()
+      zones.push(newObj)
+      console.log(zones)
+      
+    }
+    
+    
+    zones.push({
+      color: $scope.config.seriesColor // Values from and including this value have this color 
+    })
+  
 
 
   });

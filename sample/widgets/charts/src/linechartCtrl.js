@@ -94,10 +94,10 @@ angular.module('adf.widget.charts')
 
         function createColor(value) {
           console.log(typeof(value))
-          if (value===undefined) {
-            return '#009BFF'
-          } else if(value=='') {
-            return '#009BFF'
+          if (value === undefined) {
+            return '#dc0f6e'
+          } else if (value == '') {
+            return '#dc0f6e'
           } else {
             return value
           }
@@ -140,7 +140,7 @@ angular.module('adf.widget.charts')
               value: createZones($scope.config.colorupto)
             }, {
               dashStyle: $scope.config.lineStyle,
-              color: shadeColor2(createColor($scope.config.seriesColor), 0.6) 
+              color: shadeColor2(createColor($scope.config.seriesColor), 0.6)
             }],
             color: createColor($scope.config.seriesColor),
             marker: {
@@ -154,7 +154,6 @@ angular.module('adf.widget.charts')
             dataLabels: {
               enabled: $scope.config.dataLabels,
               connectorColor: 'transparent',
-              connectorPadding: 0,
               color: '#000',
               formatter: function() {
                 var value = nFormatter(this.y, 1)
@@ -167,6 +166,18 @@ angular.module('adf.widget.charts')
 
               }
 
+            },
+            fillColor: {
+              linearGradient: {
+                x1: 0,
+                y1: 0,
+                x2: 0,
+                y2: 1
+              },
+              stops: [
+                [0, shadeColor2(Highcharts.getOptions().colors[0], 0.9)],
+                [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+              ]
             }
           };
         });
@@ -179,6 +190,20 @@ angular.module('adf.widget.charts')
         }
       });
 
+
+
+      var h;
+
+      function iv(){
+        if($('div').hasClass('fill')){
+          h = window.innerHeight*0.9;
+        }else {
+          h = 400
+        }
+
+      }
+      iv()
+      
 
       // create chart
       $scope.chartConfig = {
@@ -218,25 +243,30 @@ angular.module('adf.widget.charts')
             }
           }
         },
-
         title: {
           text: ' '
+        },
+        size: {
+          height: h
+        },
+        func: function(chart) {
+          $scope.$evalAsync(function() {
+            chart.reflow();
+
+            //The below is an event that will trigger all instances of charts to reflow
+            $scope.$broadcast('highchartsng.reflow');
+          });
         },
         options: {
           chart: {
             type: chartType($scope.config.fill),
-            backgroundColor: 'none',
+            backgroundColor: 'none'
           },
           plotOptions: {
-
-            line: {
-              dataLabels: {
-                enabled: true
-              }
-            },
-            series: {
+          series: {
               lineWidth: 5,
-              fillOpacity: 0.1
+              fillOpacity: 0.1,
+              threshold: 0
             }
 
           },
@@ -248,9 +278,6 @@ angular.module('adf.widget.charts')
         series: new_data
 
       };
-
-
-      //create Zones
 
 
 

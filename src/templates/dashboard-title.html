@@ -16,9 +16,11 @@
     <a href="" ng-if="editMode" title="Change Theme" ng-click="">
       <i class="mdi mdi-invert-colors mdi-24px"></i>
     </a>
-     <a ngsf-toggle-fullscreen show-if-fullscreen-enabled >
-       <i show-if-fullscreen=false class="mdi mdi-fullscreen mdi-24px" title='fullscreen'></i>
-        <i show-if-fullscreen=true class="mdi mdi-fullscreen-exit mdi-24px" title='exit full screen'></i>
+     <a ngsf-toggle-fullscreen show-if-fullscreen-enabled  >
+       <i show-if-fullscreen=false class="mdi mdi-fullscreen mdi-24px" 
+       title='fullscreen' ng-click='gothroughslides()'></i>
+        <i show-if-fullscreen=true class="mdi mdi-fullscreen-exit mdi-24px" 
+        title='exit full screen' ng-click='stopSlideShow()'></i>
     </a>
   </span>
 </h1>

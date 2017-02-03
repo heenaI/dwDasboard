@@ -25,7 +25,7 @@
 
 angular.module('sample-03', ['adf', 'LocalStorageModule'])
 .controller('sample03Ctrl', function($scope, localStorageService) {
-  var name = 'Customer Service - March 2016';
+  var name = 'MMF';
   var model = localStorageService.get(name);
   if (!model) {
     // set default model for demo purposes
@@ -35,81 +35,26 @@ angular.module('sample-03', ['adf', 'LocalStorageModule'])
       addTemplateUrl : "partials/custom-dashboard-addwidget.html",
       titleTemplateUrl : "partials/custom-dashboard-title.html",
       editTemplateUrl: "partials/custom-dashboard-edit.html",
-      structure: "3-6-3",
+      structure: "Full Page",
       rows: [{
-        columns: [
-        {
-          styleClass: "col-md-3",
-          widgets: [ {
-            title: 'Total Feedback',
-            type: 'largeNumbers',
-            config: {
-              sample: '22000',
-              sampleDesc: ' '
-            }
-          },
-          {
-            title: 'New Customers',
-            type: 'largeNumbers',
-            config: {
-              sample: '3889',
-              sampleDesc: '+ 4% in comparison to Feburary 2016'
-            }
-          },
-          {
-            title: 'Total Feedback in March 2016',
-            type: 'largeNumbers',
-            config: {
-              sample: '22000'
-            }
-          }]
-        }, {
-          styleClass: "col-md-6",
+        columns: [{
+          styleClass: "col-md-12",
           widgets: [{
-            title: 'Development of Feedback Over Time',
-            type: 'linechart',
+            title: 'Wöchentliche Online-Nutzer nach Plattformen',
+            type: 'boxy',
             config: {
-              path: 'https://docs.google.com/spreadsheets/d/1psTcRqz2PEdSW4uB_xg2xPjTevLj2MQFtJyeibrz8U8/pubhtml',
-              pathYaxis: 'Number of Entries'
-            }
-          },
-          {
-            title: 'Entries According to Categories',
-            type: 'columnchart',
-            config: {
-              path: 'https://docs.google.com/spreadsheets/d/1FkPT5jTLnjmTJV3nz_UDDDOjfjZvkyF99AzchU4bUrw/pubhtml',
-              pathYaxis: 'Number of Entries'
+              path: 'https://docs.google.com/spreadsheets/d/1eRzUr9QktBpl_pS9FPXwqtz1MjvmgLeNh98wZ-ljMjw/pubhtml'
             }
           }]
-        }, {
-          styleClass: "col-md-3",
-           widgets: [
-            {
-            title: 'Complement of the Month',
-            type: 'quotes',
-            config: {
-              sample: "Good Journalism!",
-              sampleAuthor: "T. Khan via YouTube"
-            }
-          },
-           {
-            title: 'New Customers According to the Language',
-            type: 'barchart',
-            config: {
-              path: 'https://docs.google.com/spreadsheets/d/1elKA1sf3g1gPNYGG9OxtrSEHqS5l1qGVG2Kb2BmIix8/pubhtml',
-              pathYaxis: 'Number of Entries'
-            }
-          }
-           ]
         }]
       }]
     };
   }
    $scope.name = name;
   $scope.model = model;
-  $scope.collapsible = true;
-  $scope.maximizable = true;
-  $scope.categories = false;
+  $scope.collapsible = false;
+  $scope.maximizable = false;
+  $scope.categories = true;
 
   $scope.$on('adfDashboardChanged', function(event, name, model) {
     localStorageService.set(name, model);

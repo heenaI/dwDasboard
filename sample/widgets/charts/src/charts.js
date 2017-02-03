@@ -3,7 +3,6 @@
 angular.module('adf.widget.charts', ['adf.provider', "highcharts-ng"])
   .config(function(dashboardProvider){
     var widget = {
-      templateUrl: '{widgetsPath}/charts/src/view.html',
       reload: true,
       category: 'Charts',
       resolve: {
@@ -22,10 +21,12 @@ angular.module('adf.widget.charts', ['adf.provider', "highcharts-ng"])
       .widget('piechart', angular.extend({
         title: 'Pie chart',
         description: 'Creates custom Piechart with Google Sheets',
+        image: '{widgetsPath}/charts/src/barchartedit.html',
         controller: 'piechartCtrl',
       edit: {
         templateUrl: '{widgetsPath}/charts/src/edit.html'
-      }
+      },
+      templateUrl: '{widgetsPath}/charts/src/view.html'
 
         }, widget))
       .widget('barchart', angular.extend({
@@ -34,15 +35,18 @@ angular.module('adf.widget.charts', ['adf.provider', "highcharts-ng"])
         controller: 'barChartCtrl',
       edit: {
         templateUrl: '{widgetsPath}/charts/src/barchartedit.html'
-      }
+      },
+      templateUrl: '{widgetsPath}/charts/src/view.html'
         }, widget))
       .widget('linechart', angular.extend({
         title: 'Line chart',
         description: 'Creates custom line with Google Sheets',
+        image: '{widgetsPath}/charts/src/line-chart-with-markers-icon-69543.png',
         controller: 'linechartCtrl',
       edit: {
         templateUrl: '{widgetsPath}/charts/src/linechartEdit.html'
-      }
+      },
+      templateUrl: '{widgetsPath}/charts/src/view.html'
         }, widget))
       .widget('stackedbarChart', angular.extend({
         title: 'Stacked bar chart',
@@ -50,7 +54,8 @@ angular.module('adf.widget.charts', ['adf.provider', "highcharts-ng"])
         controller: 'stackedBarChartCtrl',
       edit: {
         templateUrl: '{widgetsPath}/charts/src/edit.html'
-      }
+      },
+      templateUrl: '{widgetsPath}/charts/src/view.html'
         }, widget))
       .widget('columnchart', angular.extend({
         title: 'Column chart',
@@ -58,7 +63,8 @@ angular.module('adf.widget.charts', ['adf.provider', "highcharts-ng"])
         controller: 'columnchartCtrl',
       edit: {
         templateUrl: '{widgetsPath}/charts/src/edit.html'
-      }
+      },
+      templateUrl: '{widgetsPath}/charts/src/view.html'
         }, widget))
       .widget('stackedcolumn', angular.extend({
         title: 'Stacked column chart',
@@ -66,7 +72,8 @@ angular.module('adf.widget.charts', ['adf.provider', "highcharts-ng"])
         controller: 'stackedColumnCtrl',
       edit: {
         templateUrl: '{widgetsPath}/charts/src/edit.html'
-      }
+      },
+      templateUrl: '{widgetsPath}/charts/src/view.html'
         }, widget))
       .widget('trendline', angular.extend({
         title: 'Double Axis chart',
@@ -74,6 +81,16 @@ angular.module('adf.widget.charts', ['adf.provider', "highcharts-ng"])
         controller: 'trendlineCtrl',
         edit: {
         templateUrl: '{widgetsPath}/charts/src/doubleAxisedit.html'
-      }
+      },
+      templateUrl: '{widgetsPath}/charts/src/view.html'
+        }, widget))
+      .widget('boxy', angular.extend({
+        title: 'Boxy',
+        description: 'Creates a Boxy chart',
+        controller: 'boxyCtrl',
+        edit: {
+        templateUrl: '{widgetsPath}/charts/src/edit.html'
+      },
+      templateUrl: '{widgetsPath}/charts/src/boxyview.html',
         }, widget));
   });

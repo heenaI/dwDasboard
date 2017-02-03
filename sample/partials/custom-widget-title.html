@@ -1,10 +1,11 @@
 <h3 class="panel-title">
+  <div style='width:50%;'> 
   <i class="glyphicon glyphicon-star"></i>
   {{definition.title}}
   <span class="pull-right">
-    <a href="" title="reload widget content" ng-if="widget.reload" ng-click="reload()">
-        <i class="mdi mdi-autorenew"></i>
-    </a>
+    <!--<a href="" title="reload widget content" ng-if="widget.reload" ng-click="reload()">
+        <!--<i class="mdi mdi-autorenew"></i>   
+    </a>-->
     <!-- collapse -->
     <a href="" title="collapse widget" ng-show="options.collapsible && !widgetState.isCollapsed" ng-click="widgetState.isCollapsed = !widgetState.isCollapsed">
       <i class="glyphicon glyphicon-minus"></i>
@@ -29,4 +30,5 @@
       <i class="glyphicon glyphicon-remove"></i>
     </a>
   </span>
+  </div>
 </h3>

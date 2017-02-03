@@ -1,5 +1,5 @@
-<h1>
-  {{model.title}}
+<h1 style='padding-bottom:2%'>
+  
   <span style="font-size: 16px" class="pull-right">
     <a href="" ng-if="editMode" title="{{ translate('ADF_DASHBOARD_TITLE_TOOLTIP_ADD') }}" ng-click="addWidgetDialog()">
       <i class="mdi mdi-plus-circle mdi-24px"></i>
@@ -13,12 +13,15 @@
     <a href="" ng-if="editMode" title="{{ translate('ADF_DASHBOARD_TITLE_TOOLTIP_UNDO') }}" ng-click="cancelEditMode()">
       <i class="mdi mdi-undo-variant mdi-24px adf-flip"></i>
     </a>
-    <a href="" ng-if="editMode" title="Change Theme" ng-click="changecolorDialogue()">
+    <!-- <a href="" ng-if="editMode" title="Change Theme" ng-click="changecolorDialogue()">
       <i class="mdi mdi-invert-colors mdi-24px"></i>
+    </a> -->
+     <a ngsf-toggle-fullscreen show-if-fullscreen-enabled ng-controller="slideShow">
+       <i show-if-fullscreen=false class="mdi mdi-fullscreen mdi-24px" 
+       title='fullscreen' data-ng-click='gothroughslides()'></i>
+        <i show-if-fullscreen=true class="mdi mdi-fullscreen-exit mdi-24px" 
+        title='exit full screen' data-ng-click='stopSlideShow()'></i>
     </a>
-     <a ngsf-toggle-fullscreen show-if-fullscreen-enabled >
-       <i show-if-fullscreen=false class="mdi mdi-fullscreen mdi-24px" title='fullscreen'></i>
-        <i show-if-fullscreen=true class="mdi mdi-fullscreen-exit mdi-24px" title='exit full screen'></i>
-    </a>
+
   </span>
 </h1>

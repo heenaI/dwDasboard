@@ -525,6 +525,8 @@ angular.module('adf')
             templateUrl: adfEditColorPath
           });
 
+          
+
           addColorScope.closeDialog = function() {
             // close and destroy
             modalInstance.close();

@@ -28,8 +28,6 @@ angular.module('sample-01', ['adf', 'LocalStorageModule'])
 
   var name = 'sample-01';
   var model = localStorageService.get(name);
-    console.log($scope.adfModel)
-
 
   if (!model) {
     // set default model for demo purposes
@@ -38,94 +36,33 @@ angular.module('sample-01', ['adf', 'LocalStorageModule'])
       addTemplateUrl : "partials/custom-dashboard-addwidget.html",
       titleTemplateUrl : "partials/custom-dashboard-title.html",
       editTemplateUrl: "partials/custom-dashboard-edit.html",
-      structure: "3-6-3",
+      structure: "12/4-4-4",
       rows: [{
         columns: [{
-          styleClass: "col-md-3",
+          styleClass: "col-md-4",
           widgets: [{
-            type: "largeNumbers",
+            type: "Wöchentliche Nutzerkontakte nach TV",
             config: {
-              sample: "135000000",
-              samplePostfix: "Benutzer pro Woche",
-              sampleDesc: "+17 Mio. im Vergleich zu 2015"
+              sample: "2016: 66 Mio",
+              samplePrefix: "2015: 55 Mio"
               },
-            title: "Gesamtzahl Nutzer pro Woche"
+            title: "TV nutzerKontakte"
             }, {
-            type: "largeNumbers",
+            type: "Wöchentliche Nutzerkontakte nach Radio",
             config: {
-              sample: "66000000",
-              samplePostfix: "Benutzer pro Woche",
-              sampleDesc: "+11 Mio. im Vergleich zu 2015"
+              sample: "2016: 40 Mio.",
+              samplePrefix: "2015: 41 Mio."
             },
-            title: "Gesamtzahl TV Nutzer pro Woche"
+            title: "Wöchentliche Nutzerkontakte nach Radio"
           }, {
-            type: "largeNumbers",
+            type: "Wöchentliche Nutzerkontakte nach soziale Medien",
             config: {
-              sample: "40000000",
-              sampleDesc: "Vor allem die Sprachen: Haussa + Kisuaheli"
+              sample: "2016: 29 Mio.",
+              samplePrefix: "2015: 22 Mio."
             },
-            title: "Gesamtzahl Radionutzer pro Woche"
-          }, {
-            type: "largeNumbers",
-            config: {
-              sample: "29000000",
-              sampleDesc: "Über Internet: DW App und Social Media"
-            },
-            title: "Gesamtzahl der Digitalnutzer pro Woche"
+            title: "Wöchentliche Nutzerkontakte nach soziale Medien"
           }]
-        },
-        {
-          styleClass: "col-md-6",
-           widgets: [{
-            fullScreen: false,
-            modalSize: 'lg',
-            type: "barchart",
-            config: {
-               path: "https://docs.google.com/spreadsheets/d/1fPvHFLqi9s6gngi-KpqTXQNQUFSpQWRT0XFvdKMlbyA/pubhtml"
-            },
-            title: "DW users around the world in Percent"
-          }, {
-            fullScreen: false,
-            modalSize: 'lg',
-            type: "barchart",
-            config: {
-               path: "https://docs.google.com/spreadsheets/d/17u3kEyPjBg3mvdR-tfr7beQbePwzoQFGij8s-Lc8kps/pubhtml"
-            },
-            title: "Zahl der Mitarbeiter an den Standorten Bonn und Berlin"
-
-           }]
-        },
-        {
-          styleClass: "col-md-3",
-           widgets: [{
-            type: "largeNumbers",
-            config: {
-              sampleThree: "Englisch",
-              sample: "30000000",
-              samplePostfix: "Nutzer pro Woche"
-              },
-            title: "Erfolgreichste Sprache"
-            },{
-            type: "largeNumbers",
-            config: {
-              sampleThree: "Arabisch",
-              sample: "+ 50%",
-              samplePostfix: "Nutzer pro Woche",
-              sampleDesc: "im Vergleich zum Vorjahr"
-              },
-            title: "Stärkste Wachstum"
-            }, {
-            type: "news",
-
-            config: {
-               url: "http://rss.dw.com/rdf/rss-en-all"
-            },
-            title: "Top News"
-
-          }]
-        }
-
-          ]
+        }]
 
       }]
     };

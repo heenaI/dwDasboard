@@ -37,83 +37,27 @@ angular.module('sample-02', ['adf', 'LocalStorageModule'])
       addTemplateUrl : "partials/custom-dashboard-addwidget.html",
       titleTemplateUrl : "partials/custom-dashboard-title.html",
       editTemplateUrl: "partials/custom-dashboard-edit.html",
-      structure: "3-6-3",
+      structure: "Full Page",
       rows: [{
         columns: [{
-          styleClass: "col-md-3",
+          styleClass: "col-md-12",
           widgets: [{
-            type: "timeline",
-            config: {
-              sample: '09/24/2016',
-              sampleTwo: 'Do MMM YYYY'
-            },
-            title: "Project Deadline"
-          }, {
-            type: "stackedcolumn",
-            config: {
-              path: "https://docs.google.com/spreadsheets/d/1qnnWN88d19Qp9CQqzq7o2pMypTvIIFvTt_DsFslol8w/pubhtml"
-            },
-            title: "Open Tasks"
-          }]
-        }, {
-          styleClass: "col-md-6",
-          widgets: [{
-            fullScreen: true,
-            modalSize: 'lg',
             type: "linechart",
             config: {
-              path: "https://docs.google.com/spreadsheets/d/1PzvEXQ_pHzMvbAyWIQe3BsOGOB1PHltkPouCA0S_2J4/pubhtml"
+              path: "https://docs.google.com/spreadsheets/d/1q9afXrnWdE0I_V97c6ktEXP6NtN84Kyb8y5BR9wc608/pubhtml",
+              colorupto: 125000000,
             },
-            title: "Completed Training of DW Employees"
-          }, {
-            fullScreen: true,
-            //modalSize: 'lg',
-            type: "texteditor",
-            config: {
-              sample: "<h1> Missing Features</h1><ul><li>Video Embedding</li><li>Twitter Share</li><li>Headlines</li></ul><br><h1>Project Head: Ruth Kühn - 3333</h1>"
-                          },
-            title: "Work on new CMS"
+            title: "ENTWICKLUNG WÖCHENTLICHE NUTZERKONTAKTE SEIT 2009"
           }]
-        },
-        {
-           styleClass: "col-md-3",
-        widgets: [{
-          type: "largeNumbers",
-            config: {
-              sample: "130",
-              sampleDesc: "Days ago on March 15th 2016"
-                          },
-            title: "Project Start"
-
-        },{
-          type: "largeNumbers",
-            config: {
-              sample: "15",
-              sampleDesc: "3 more people than last week"
-                          },
-            title: "Staff involved in Project"
-
-        },{
-          type: "largeNumbers",
-            config: {
-              sample: "989",
-              sampleDesc: "That looks good. Keep it up :-)"
-                          },
-            title: "Completed Tasks"
-
         }]
-
-        }
-
-        ]
       }]
     };
   }
   $scope.name = name;
   $scope.model = model;
-  $scope.collapsible = true;
-  $scope.maximizable = true;
-  $scope.categories = false;
+  $scope.collapsible = false;
+  $scope.maximizable = false;
+  $scope.categories = true;
 
   $scope.$on('adfDashboardChanged', function(event, name, model) {
     localStorageService.set(name, model);

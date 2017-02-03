@@ -73,22 +73,6 @@ angular.module('sample-04', ['adf', 'LocalStorageModule'])
                 {
                   "columns": [
                     {
-                      "styleClass": "col-md-12",
-                      "widgets": [
-                        {
-                          "type": "markdown",
-                          "config": {
-                            "content": "This example demonstrates the usage of nested rows."
-                          },
-                          "title": "Markdown"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "columns": [
-                    {
                       "styleClass": "col-md-6",
                       "widgets": [
                         {
@@ -126,7 +110,7 @@ angular.module('sample-04', ['adf', 'LocalStorageModule'])
   $scope.model = model;
   $scope.collapsible = false;
   $scope.maximizable = false;
-  $scope.categories = false;
+  $scope.categories = true;
 
   $scope.$on('adfDashboardChanged', function(event, name, model) {
     localStorageService.set(name, model);

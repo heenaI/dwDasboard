@@ -1,184 +1,166 @@
 'use strict';
 
 angular.module('adf.widget.charts')
-  .controller('boxyCtrl', function($scope, urls, config) {
+  .controller('boxyCtrl', function ($scope, urls, config) {
+    console.log(JSON.stringify(urls))
     function countObjectKeys(obj) {
       return Object.keys(obj).length;
+    };
+    var keys = _.keys(urls[0])
+    var key = _.without(keys, keys[0])
+    var rearr = urls.sort(function (obj1, obj2) {
+      return obj2[key] - obj1[key];
+    });
+    $scope.style = {
+      "height": window.innerHeight * 0.5 + 'px'
     }
 
-    //clean sort data
 
-    if (urls) {
+    //clean sort data#
+    var data = function (data) {
+      var values = [];
+      var key = _.keys(data[0])[1]
 
 
-      var categories = []
-      var keys = _.keys(urls[0])
-      var key = _.without(keys, keys[0])
-      var colors = ['#ffc000', '#f08c00', '#dc197d', '#05afe1',
-        '#820028', '#002d5a', '#0078c8']
+      var misc = {
+        name: 'Andere',
+        data: data.map(function (value) {
+          return Number(Object.values(value)[1])
+        }).filter(function (item) {
+          return item < 10
+        }).reduce(function (acc, item) {
+          return acc + item
+        })
+      };
 
-      var getData = _.each(urls, function(value) {
-        categories.push(_.values(value)[0])
+      var data = data.filter(function (value) {
+        return value[key] > 10;
+      }).map(function (item, index) {
+        return {
+          name: _.values(item)[0],
+          data: 100-parseFloat(_.values(item)[1])
+        }
       });
 
+      data[data.length] = misc
+      return data
+    }
 
-      function cleanData(data) {
-        if (countObjectKeys(data[0]) > 2) {
-          var result = _.map(key, function(value) {
-            return {
-              name: value,
-              data: _.map(data, value).map(Number)
-            };
-          });
-          return result
-        } else {
-          var result = _.map(data, function(num, key) {
-            return {
-              name: _.values(num)[0],
-              data: [parseInt(_.values(num)[1])]
-            }
-          })
-          return result
-        }
-
-
+    $scope.config.datasets = data(rearr)
+  })
+  .directive('boxyChart', function () {
+    return {
+      link: link,
+      restrict: 'E',
+      scope: {
+        data: '='
       }
+    };
 
-      var data = cleanData(urls)
-
-      var sum = function() {
-        var arr = [];
-        var cleanArray = _.pluck(data, 'data');
-        for (var i = 0; i < cleanArray.length; i++) {
-          arr.push(cleanArray[i][0])
-        }
-        return arr
-      }()
-
-      var total = function(arr){
-              var add =  _.reduce(arr, function(memo, num) {
-              return memo + num;
-            }, 0);
-              return add
-             }
-
-     var totalofArr = total(sum)
-
-
-
-      var avg = _.map(sum, function(num) {
-        var sum = (num  / totalofArr)* 100
-        return Math.round(sum)
-      }).sort(function(a, b) {
-        return a - b
-      });
-
-      var numberArr = [];
-      var category = 0;
-      for (var i = 0; i < avg.length; i++) {
-        for (var j = 0; j < avg[i]; j++) {
-          numberArr.push(category);
-        }
-        category++;
-      }
-
-     
-
-
-
-      //add a scenario where when data is like this [{"Plattformen":"DW eigne Angebot",
-      //"Online-Nutzer ":"15"},{"Plattformen":"Weitre koopration","Online-Nutzer ":"11"},
-      //{"Plattformen":"MSN","Online-Nutzer ":"4"},{"Plattformen":"YouTube","Online-Nutzer ":
-      //"4"},{"Plattformen":"Podcasts und Downloads","Online-Nutzer ":"1"},
-      //{"Plattformen":"Twitter","Online-Nutzer ":"7"},{"Plattformen":"Facebook",
-      //"Online-Nutzer ":"58"}]
-      //it still creates a stacked bar chart. The solution could be that if the key/value
-      //pairs in an object are 2 or less then then two then change the data structure 
-
-
+    function link(scope, el, attr) {
+      var data = scope.data;
       var ContainerWidth = angular.element(document.querySelector('#mainContainer').offsetWidth);
-      var rectWidth = ContainerWidth[0] / 35
+      var rectWidth = ContainerWidth[0] / 3
+
+      var svg = d3.select(el[0])
+        .append('svg')
+        .attr('width', rectWidth)
+        .attr('height', rectWidth);
+
+      var svgContainer = svg.append('g')
+        .attr('class', 'box');
 
 
-      // create chart
-      var svgContainer = d3.select("#boxy")
+      var circle = svgContainer
+        .selectAll('path')
+        .data(d3.range(100))
+        .enter()
+        console.log(data.data)
 
-      var rectangle = svgContainer.selectAll("rect")
-        .data(numberArr);
-
-      var currentIndex = 0;
-      var cumulative = 0;
-
-      //create color scale
-
-      var rectangle = rectangle.enter()
-        .append("rect")
+      var circle = circle
+        .append("circle")
         .style("stroke", "#fff")
-        .style("fill", function(d) {
-          return colors[d];
+        .style("fill", function (d, i) {
+          return i >= data.data ? '#dc0f6e' : '#95a6b3';
         })
-        .attr("x", function(d, i) {
-          return i % 10 * rectWidth
+        .attr("cx", function (d, i) {
+          return i % 10 * rectWidth / 15 + 15
         })
-        .attr("y", function(d, i) {
-          return Math.floor(i / 10) % 10 * rectWidth + 20
+        .attr("cy", function (d, i) {
+          return Math.floor(i / 10) % 10 * rectWidth / 15 + 20
         })
-        .attr("width", rectWidth)
-        .attr("height", rectWidth);
+        .attr("r", '0.8em');
+
+      var arr = [];
+      for (var i = 0; i < data.data; i++) {
+        arr.push(1)
+      };
 
 
-      var text = svgContainer.selectAll("text")
-        .data(data)
+
+
+      // var circle2 = svgContainer
+      //   .selectAll('path')
+      //   .data(arr)
+      //   .enter()
+
+
+      // var circle2 = circle2
+      //   .append('circle')
+      //   .attr('class', 'circle2')
+      //   .style("fill", function (d, i) {
+      //     return '#dc0f6e';
+      //   })
+      //   .attr("cx", function (d, i) {
+      //     return i % 10 * rectWidth / 15 + 15
+      //   })
+      //   .attr("cy", function (d, i) {
+      //     return Math.floor(i / 10) % 10 * rectWidth / 15 + 20
+      //   })
+      //   .attr("r", '0.8em');
+
+      var textContainer = svg.append('g');
+
+      var text = textContainer
+        .selectAll('path')
+        .data(data.name)
         .enter()
-        .append("text");
 
-      var shadow = svgContainer.selectAll("text")
-        .data(data)
-        .enter()
-        .append("text");
+      var text = text
+        .append('text')
+        .attr('class', 'boxylabels')
+        .each(function () {
+          var arr = data.name.split(' ');
+          var joinedArr = [];
+          var acc;
 
-
-
-      var textLabels = text
-        .attr("x", function(d) {
-          if (d.name == 'MSN') {
-            return 100
-          } else if (d.name == 'YouTube') {
-            return 300
-          } else {
-            return -100
+          for (var i = 0; i < arr.length; i++) {
+            if (arr[i].length < 3) {
+              joinedArr.push(arr[i] + ' ' + arr[i + 1])
+              acc = arr[i + 1]
+            } 
+            else if(arr[i].length>3 && arr[i]!==acc) {
+            joinedArr.push(arr[i])
           }
+        } 
 
-        })
-        .attr("y", function(d) {
-          if (d.name == 'Podcasts und Downloads') {
-            return 40
-          } else if (d.name == 'Twitter') {
-            return 90
-          } else if (d.name == 'Weitre koopration') {
-            return 130
-          } else if (d.name == 'DW eigne Angebot') {
-            return 180
-          } else if (d.name == 'Facebook') {
-            return 270
-          } else if (d.name == 'MSN') {
-            return 18
-          } else if (d.name == 'YouTube') {
-            return 18
+          for (i = 0; i < joinedArr.length; i++) {
+            d3.select(this).append("tspan")
+              .text(function () {
+                return joinedArr[i]
+
+              })
+              .attr("dy", i ? "1.2em" : 0)
+              .attr("x", rectWidth / 7)
+              .attr("text-anchor", "left")
+              .attr("class", "tspan" + i);
           }
         })
-        .text(function(d) {
-          return d.name;
-        })
-        .attr("font-size", "1.5em")
-        .attr("font-weight", "bolder")
-        .attr("fill", "#000")
-        .attr("class", "boxyText");
+        .attr('x', rectWidth / 5)
+        .attr('y', rectWidth - 80)
+        .attr('font-size', '2em')
+        .style("fill", '#3e3e3e')
 
-
-
-    }
-
-
+    };
 
   });

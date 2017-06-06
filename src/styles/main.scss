@@ -31,9 +31,8 @@
   text-decoration: none;
 }
 
-.fill{
-  height: 100%;
-  color: red;
+.fullheight{
+  height: 90%;
 }
 
 .dashboard-container h1 a {
@@ -52,34 +51,43 @@
 }
 
 body{
-  background-color: #Fff;
+  background-color: none;
   font-family: Arial, Helvetica, sans-serif;
   color: #3E3E3E;
   padding-top: 0px!important;
+  height: 100%;
 }
 h1{
   font-size: 2em;
   
 }
-.chartContainer{
+
+.chart{
   height: 100%;
+  width: 100%;
+}
+#chart1{
+height: 100%;
+  width: 100%;
+}
+.boxy{
+  margin: 5% 15%;
 }
 
 .panel-heading{
     font-family: Arial, Helvetica, sans-serif;
-    color: #3e3e3e;
-    background-color: #e0e5e8;
-    
+    color: #778D9e;
+    background-color: #e0e5e8; 
 }
 
 .panel-title {
-    font-size: 1.45em;
-    font-family: Arial, Helvetica, sans-serif;
-    border-bottom: 2px solid #3e3e3e;
+    font-size: 5em;
     padding-bottom: 0.7%;
+    font-weight: 900;
 }
 .widget a{
-  color: #009BFF;
+  color: #3e3e3e;
+  font-size: 0.6em;
 }
 .dashboard-container h1 a{
   color: #3e3e3e;
@@ -117,7 +125,7 @@ background-color: #fff;
 }
 
 .fullscreen{
-background-color: #fff;
+background-color:none;
     width: 100%!important;
     height: 100%;
 }
@@ -346,19 +354,19 @@ body {
 }
 
 .boldDate{
-  font-size: 5em;
+  font-size: 10em;
   font-weight: 900;
   text-align: center;
-  color: #009BFF;
+  color: #dc0f6e;
 }
 .smallText {
-  color: #009BFF;
+  color: #dc0f6e;
 }
 .mediumText{
 font-size: 3em;
   font-weight: 900;
   text-align: center;
-  color: #009BFF;
+  color: #dc0f6e;
   
 }
 #dateSubset{
@@ -450,6 +458,9 @@ blockquote p {
 }
 .mdi-brightness-1:before {
   font-size: 10em!important;
+}
+.boxylabels{
+  font-size: 2.5em;
 }
 
 

@@ -32,6 +32,9 @@ angular.module('sample-05', ['adf', 'LocalStorageModule'])
       // set default model for demo purposes
       model = {
         title: "Sample 05",
+        addTemplateUrl : "partials/custom-dashboard-addwidget.html",
+        titleTemplateUrl : "partials/custom-dashboard-title.html",
+        editTemplateUrl: "partials/custom-dashboard-edit.html",
         structure: "6-6",
         rows: [{
           columns: [{

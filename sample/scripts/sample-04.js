@@ -31,40 +31,16 @@ angular.module('sample-04', ['adf', 'LocalStorageModule'])
     // set default model for demo purposes
     model = {
       title: "Sample 04",
+      addTemplateUrl : "partials/custom-dashboard-addwidget.html",
+      titleTemplateUrl : "partials/custom-dashboard-title.html",
+      editTemplateUrl: "partials/custom-dashboard-edit.html",
       structure: "3-9 (12/6-6)",
       rows: [{
           "columns": [
             {
               "styleClass": "col-md-3",
               "widgets": [
-                {
-                  "type": "weather",
-                  "config": {
-                    "location": "Hildesheim"
-                  },
-                  "title": "Weather"
-                },
-                {
-                  "type": "weather",
-                  "config": {
-                    "location": "Dublin,IE"
-                  },
-                  "title": "Weather"
-                },
-                {
-                  "type": "weather",
-                  "config": {
-                    "location": "Edinburgh"
-                  },
-                  "title": "Weather"
-                },
-                {
-                  "type": "weather",
-                  "config": {
-                    "location": "New York"
-                  },
-                  "title": "Weather"
-                }
+               
               ]
             },
             {
@@ -72,30 +48,7 @@ angular.module('sample-04', ['adf', 'LocalStorageModule'])
               "rows": [
                 {
                   "columns": [
-                    {
-                      "styleClass": "col-md-6",
-                      "widgets": [
-                        {
-                          "type": "githubHistory",
-                          "config": {
-                            "path": "angular-dashboard-framework/angular-dashboard-framework"
-                          },
-                          "title": "Github History"
-                        }
-                      ]
-                    },
-                    {
-                      "styleClass": "col-md-6",
-                      "widgets": [
-                        {
-                          "type": "githubAuthor",
-                          "config": {
-                            "path": "angular/angular.js"
-                          },
-                          "title": "Github Author"
-                        }
-                      ]
-                    }
+                    
                   ]
                 }
               ]

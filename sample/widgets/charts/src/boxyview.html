@@ -1,6 +1,5 @@
-<div id='mainContainer'>
-<svg id="boxy" viewBox="0 0 960 500"
-  preserveAspectRatio="xMidYMid meet" style='padding-left: 20%;'>
-</svg>
+<div id='mainContainer' ng-init='charts=config.datasets' class='boxy' ng-style="style">
+<boxy-chart id="boxy" ng-repeat='chart in charts track by $index' data='chart' class='col-xs-3'>
+</boxy-chart>
 	
 </div>

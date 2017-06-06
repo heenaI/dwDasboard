@@ -22,36 +22,6 @@ function RegisterWidgets(dashboardProvider) {
           templateUrl: '{widgetsPath}/numbers/src/largeNumedit.html',
           controller: 'NumberCtrl'
           }
-        }, widget))
-      .widget('tv', angular.extend({
-        title: 'Wöchentliche Nutzerkontakte nach TV',
-        description: 'Wöchentliche Nutzerkontakte nach TV DW',
-        controller: 'NumberCtrl',
-        templateUrl: '{widgetsPath}/numbers/src/tv_nutzerKontakte.html',
-        edit: {
-          templateUrl: '{widgetsPath}/numbers/src/largeNumedit.html',
-          controller: 'NumberCtrl'
-          }
-        }, widget))
-      .widget('radio', angular.extend({
-        title: 'Wöchentliche Nutzerkontakte nach Radio',
-        description: 'Wöchentliche Nutzerkontakte nach Radio DW',
-        controller: 'NumberCtrl',
-        templateUrl: '{widgetsPath}/numbers/src/radio_nutzerKontakte.html',
-        edit: {
-          templateUrl: '{widgetsPath}/numbers/src/largeNumedit.html',
-          controller: 'NumberCtrl'
-          }
-        }, widget))
-      .widget('social', angular.extend({
-        title: 'Wöchentliche Nutzerkontakte nach soziale Medien',
-        description: 'Wöchentliche Nutzerkontakte nach soziale Medien DW',
-        controller: 'NumberCtrl',
-        templateUrl: '{widgetsPath}/numbers/src/socialmedia.html',
-        edit: {
-          templateUrl: '{widgetsPath}/numbers/src/largeNumedit.html',
-          controller: 'NumberCtrl'
-          }
         }, widget));
 
 

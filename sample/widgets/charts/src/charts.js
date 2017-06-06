@@ -9,8 +9,8 @@ angular.module('adf.widget.charts', ['adf.provider', "highcharts-ng"])
         /* @ngInject */
         urls: function(chartService, config, $scope){
           if (config.path){
-            
             return chartService.getSpreadsheet(config.path);
+            
           }
         }
       }
@@ -92,5 +92,14 @@ angular.module('adf.widget.charts', ['adf.provider', "highcharts-ng"])
         templateUrl: '{widgetsPath}/charts/src/edit.html'
       },
       templateUrl: '{widgetsPath}/charts/src/boxyview.html',
+        }, widget))
+        .widget('symbolMap', angular.extend({
+        title: 'World Map',
+        description: 'Creates a world map',
+        controller: 'mapCtrl',
+        edit: {
+        templateUrl: '{widgetsPath}/charts/src/edit.html'
+            },
+        templateUrl: '{widgetsPath}/charts/src/map.html',
         }, widget));
   });

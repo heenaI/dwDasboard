@@ -15,16 +15,11 @@ angular.module('adf.widget.charts')
 
     function countObjectKeys(obj) {
       return Object.keys(obj).length;
-    }
+    };
 
-
-    //clean sort data
 
     if (urls) {
       $scope.config.series = [];
-
-
-
       // console.log(series)
       var keys = _.keys(urls[0])
       var key = keys[1]
@@ -71,7 +66,15 @@ angular.module('adf.widget.charts')
         }
       }
 
-      // create chart
+      // create chartfunction countObjectKeys(obj) {
+      return Object.keys(obj).length;
+    };
+
+
+    //clean sort data
+
+    if (urls) {
+      $scope.conf
       $scope.chartConfig = {
         xAxis: {
           categories: $scope.config.series,
@@ -110,7 +113,6 @@ angular.module('adf.widget.charts')
           plotLines: [{
             label: {
               text: $scope.config.plotLineLabel,
-
               rotation: 0,
               style: {
                 fontWeight: 'bold'
